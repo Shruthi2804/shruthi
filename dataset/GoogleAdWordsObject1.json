@@ -1,0 +1,16 @@
+{
+	"name": "GoogleAdWordsObject1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GoogleAdWords1_760443842250",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "GoogleAdWordsObject",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "\"v201809\".\"CLICK_PERFORMANCE_REPORT\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

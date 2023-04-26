@@ -1,0 +1,83 @@
+{
+	"name": "update-selldo-tbls-pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "for-each-table",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.keys",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "merge-tbls-dbr-notebook-activity",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": {
+									"value": "@pipeline().globalParameters.databricks_selldo_merge_table_notebook_path",
+									"type": "Expression"
+								},
+								"baseParameters": {
+									"env": {
+										"value": "@pipeline().globalParameters.environment",
+										"type": "Expression"
+									},
+									"key": {
+										"value": "@item()",
+										"type": "Expression"
+									},
+									"date": {
+										"value": "@addDays(pipeline().parameters.date, -1, 'yyyy-MM-dd')",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "metadata_mgt_databricks_linked_service",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			}
+		],
+		"concurrency": 1,
+		"parameters": {
+			"keys": {
+				"type": "array",
+				"defaultValue": [
+					"leads",
+					"calls",
+					"emails",
+					"followups",
+					"site_visits",
+					"smss",
+					"whatsapps"
+				]
+			},
+			"date": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "sell-do"
+		},
+		"annotations": [],
+		"lastPublishTime": "2021-04-26T05:02:04Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

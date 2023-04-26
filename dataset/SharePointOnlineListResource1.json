@@ -1,0 +1,19 @@
+{
+	"name": "SharePointOnlineListResource1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "manusheet_sharepoint_source",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "manualsheetsautomation"
+		},
+		"annotations": [],
+		"type": "SharePointOnlineListResource",
+		"schema": [],
+		"typeProperties": {
+			"listName": "Documents"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

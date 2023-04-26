@@ -1,0 +1,24 @@
+{
+	"name": "facebook_ads_queries_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_prod",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "facebook-ads"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ads-queries.json",
+				"folderPath": "lake/facebook-ads/data-factory/facebook-ads-meta-data",
+				"fileSystem": "tvse"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

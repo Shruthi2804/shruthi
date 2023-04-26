@@ -1,0 +1,358 @@
+{
+	"name": "collections_score_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_dev_rg",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Output_collections.csv",
+				"folderPath": "machine-learning/collection-analytics/output",
+				"fileSystem": "tvse"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Prop_0",
+				"type": "String"
+			},
+			{
+				"name": "Unit No.",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "No_of_People_in_your_family",
+				"type": "String"
+			},
+			{
+				"name": "How_many_people_in_your_household_are_employed",
+				"type": "String"
+			},
+			{
+				"name": "Mode_Of_Visit",
+				"type": "String"
+			},
+			{
+				"name": "Marital_Status",
+				"type": "String"
+			},
+			{
+				"name": "Source",
+				"type": "String"
+			},
+			{
+				"name": "Current_Accommodation",
+				"type": "String"
+			},
+			{
+				"name": "Current__Type_of_residence",
+				"type": "String"
+			},
+			{
+				"name": "Residential_Status",
+				"type": "String"
+			},
+			{
+				"name": "Monthly_Income",
+				"type": "String"
+			},
+			{
+				"name": "Project",
+				"type": "String"
+			},
+			{
+				"name": "Source_of_Fund",
+				"type": "String"
+			},
+			{
+				"name": "Preferred_Budget_Range",
+				"type": "String"
+			},
+			{
+				"name": "First_Home_?",
+				"type": "String"
+			},
+			{
+				"name": "Reason_For_Purchase",
+				"type": "String"
+			},
+			{
+				"name": "Month_of_booking",
+				"type": "String"
+			},
+			{
+				"name": "Principle_industry_of_your_organization",
+				"type": "String"
+			},
+			{
+				"name": "no. of site visits",
+				"type": "String"
+			},
+			{
+				"name": "Month_of_Visit",
+				"type": "String"
+			},
+			{
+				"name": "Year_of_Visit",
+				"type": "String"
+			},
+			{
+				"name": "Day_of_Visit",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand1",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand2",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand3",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand4",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand5",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand6",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand7",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand8",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand9",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand10",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand11",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand12",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand13",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand14",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand15",
+				"type": "String"
+			},
+			{
+				"name": "demand_demand16",
+				"type": "String"
+			},
+			{
+				"name": "bucket1",
+				"type": "String"
+			},
+			{
+				"name": "bucket2",
+				"type": "String"
+			},
+			{
+				"name": "bucket3",
+				"type": "String"
+			},
+			{
+				"name": "bucket4",
+				"type": "String"
+			},
+			{
+				"name": "bucket5",
+				"type": "String"
+			},
+			{
+				"name": "bucket6",
+				"type": "String"
+			},
+			{
+				"name": "bucket7",
+				"type": "String"
+			},
+			{
+				"name": "bucket8",
+				"type": "String"
+			},
+			{
+				"name": "bucket9",
+				"type": "String"
+			},
+			{
+				"name": "bucket10",
+				"type": "String"
+			},
+			{
+				"name": "bucket11",
+				"type": "String"
+			},
+			{
+				"name": "bucket12",
+				"type": "String"
+			},
+			{
+				"name": "bucket13",
+				"type": "String"
+			},
+			{
+				"name": "bucket14",
+				"type": "String"
+			},
+			{
+				"name": "bucket15",
+				"type": "String"
+			},
+			{
+				"name": "bucket16",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand3",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_3",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand4",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_4",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand5",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_5",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand6",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_6",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand7",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_7",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand8",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_8",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand9",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_9",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand10",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_10",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand11",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_11",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand12",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_12",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand13",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_13",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand14",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_14",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand1",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_1",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand2",
+				"type": "String"
+			},
+			{
+				"name": "Customer_Profile_demand_45_2",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

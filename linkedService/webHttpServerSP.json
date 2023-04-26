@@ -1,0 +1,13 @@
+{
+	"name": "webHttpServerSP",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://tvsemerald.sharepoint.com/_api/web/GetFileByServerRelativeUrl('sites/CustomerDatabase/Shared Documents/Documents/')/$value",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

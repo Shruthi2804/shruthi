@@ -1,0 +1,37 @@
+{
+	"name": "walkins_prod",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_prod",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "lake/walkins/output",
+				"fileSystem": "tvse"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "database",
+				"type": "String"
+			},
+			{
+				"name": "tableName",
+				"type": "String"
+			},
+			{
+				"name": "isTemporary",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,29 @@
+{
+	"name": "prod-ads-fb-backfill-tumbling-window-trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipeline": {
+			"pipelineReference": {
+				"referenceName": "facebook-ads-runner-pipeline",
+				"type": "PipelineReference"
+			},
+			"parameters": {
+				"date": "@trigger().outputs.windowStartTime"
+			}
+		},
+		"type": "TumblingWindowTrigger",
+		"typeProperties": {
+			"frequency": "Hour",
+			"interval": 24,
+			"startTime": "2020-10-30T04:09:00Z",
+			"endTime": "2020-11-11T05:09:00Z",
+			"delay": "00:00:00",
+			"maxConcurrency": 2,
+			"retryPolicy": {
+				"intervalInSeconds": 30
+			},
+			"dependsOn": []
+		}
+	}
+}

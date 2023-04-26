@@ -1,0 +1,116 @@
+{
+	"name": "SPwebactivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Sharepoint",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "Binary1forWebhttp",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BinarysinkforSPweb",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Sharepoint",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@pipeline().parameters.accessURL",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": "grant_type=client_credentials&client_id=5c602ebb-8707-44d8-8781-54a901414f11@956605c3-9a0a-4996-908a-151b930d5aa9&client_secret=Bi8YXfb7JG7nY50~VUP~s_x0NR~f5Qmy.N&resource=00000003-0000-0ff1-ce00-000000000000/tvsemerald.sharepoint.com/sites/AnalyticsProjects-TVSE@956605c3-9a0a-4996-908a-151b930d5aa9",
+					"authentication": {
+						"type": "ServicePrincipal",
+						"userTenant": "956605c3-9a0a-4996-908a-151b930d5aa9",
+						"username": {
+							"value": "@pipeline().parameters.serviceprincipleorclientIDSP",
+							"type": "Expression"
+						},
+						"resource": {
+							"value": "@pipeline().parameters.serviceprinciplekeys",
+							"type": "Expression"
+						},
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"accessURL": {
+				"type": "string",
+				"defaultValue": " https://accounts.accesscontrol.windows.net/956605c3-9a0a-4996-908a-151b930d5aa9/tokens/OAuth/2"
+			},
+			"serviceprincipleorclientIDSP": {
+				"type": "string",
+				"defaultValue": "5c602ebb-8707-44d8-8781-54a901414f11"
+			},
+			"serviceprinciplekeys": {
+				"type": "string",
+				"defaultValue": " Bi8YXfb7JG7nY50~VUP~s_x0NR~f5Qmy.N"
+			}
+		},
+		"folder": {
+			"name": "ERP-Dataingestion"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-03T12:46:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

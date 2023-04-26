@@ -1,0 +1,153 @@
+{
+	"name": "prod-tvse-central-da-datafactory-workspace",
+	"properties": {
+		"globalParameters": {
+			"environment": {
+				"type": "string",
+				"value": "prod"
+			},
+			"adls_storage_account_url": {
+				"type": "string",
+				"value": "https://prodcentralstorage.dfs.core.windows.net/"
+			},
+			"storage_adls_secret_key": {
+				"type": "string",
+				"value": "prod-central-adls-gen-storage-key"
+			},
+			"ads_function_secret_key": {
+				"type": "string",
+				"value": "prod-central-ads-azure-function-key"
+			},
+			"ads_function_url": {
+				"type": "string",
+				"value": "https://prod-tvse-central-da-ads-func-app.azurewebsites.net"
+			},
+			"databricks_user_access_key": {
+				"type": "string",
+				"value": "prod-central-databricks-user-key-no-expiry"
+			},
+			"databricks_metadata_update_cluster_id": {
+				"type": "string",
+				"value": "0928-051206-feels175"
+			},
+			"databricks_analytics_internal_cluster_id": {
+				"type": "string",
+				"value": "1130-041842-pacts812"
+			},
+			"databricks_workspace_domain_id": {
+				"type": "string",
+				"value": "https://adb-5949873496770625.5.azuredatabricks.net"
+			},
+			"databricks_metadata_update_notebook_path": {
+				"type": "string",
+				"value": "/prod_tvse/common/table-partitions-daily-repair-notebook"
+			},
+			"databricks_selldo_merge_table_notebook_path": {
+				"type": "string",
+				"value": "/prod_tvse/sell-do/compact-selldo-tbl-notebook"
+			},
+			"manualsheets": {
+				"type": "string",
+				"value": "/Users/deepak.kumar@tvsmotor.com/manualsheets"
+			},
+			"tokyotoberlin": {
+				"type": "string",
+				"value": "/prod_tvse/erp/prod_tvse_datake_erp"
+			},
+			"SPfiles_Databricks_trigger_notebookpath": {
+				"type": "string",
+				"value": "/prod_tvse/manual/prod_automation_sharepointfiles_ADFTrigger"
+			},
+			"walkins_score_notebook_path": {
+				"type": "string",
+				"value": "/prod_tvse/manual/walkins_score_tbl"
+			},
+			"data_irr_static_aaranya": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/static_inputs_mod_aaranya"
+			},
+			"data_irr_static_atrium": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/static_inputs_mod_atrium"
+			},
+			"data_irr_static_hamlet": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/static_inputs_mod_hamlet"
+			},
+			"data_irr_static_ge": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/static_inputs_mod_ge"
+			},
+			"data_irr_static_jardin": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/static_inputs_mod_jardin"
+			},
+			"data_irr_static_peninsula": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/static_inputs_mod_peninsula"
+			},
+			"data_irr_bplan": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/data_ingestion_Bplan_mod"
+			},
+			"data_irr_vowd": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/vowd_inputs_mod_all_projects"
+			},
+			"data_irr_ingestion": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/data_ingestion_transactions_mod_ge"
+			},
+			"data_irr_sales_aggmnts": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/sales_aggrements_mod_ge"
+			},
+			"data_irr_collections_all": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/collection_mod_ge_otherprojects"
+			},
+			"data_irr_collections_ge": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/collection_mod_ge_gst"
+			},
+			"data_irr_collections_hamlet": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/collection_mod_hamlet"
+			},
+			"data_irr_construction": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/construction_mod_ge"
+			},
+			"data_irr_othercost_all": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/other_cost_mod_ge"
+			},
+			"data_irr_othercost_aaranya": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/other_cost_mod_aaranya"
+			},
+			"data_irr_cashflow": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/cash_flow_mod_all_projects"
+			},
+			"data_irr_calculate_xirr_equityirr": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/calculate_xirr_value_by_quater_new_py"
+			},
+			"data_irr_dashboard_load": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/dashboard_load_mod"
+			},
+			"data_irr_collections_aaranya": {
+				"type": "string",
+				"value": "/prod_tvse/irr_prod/collection_mod_aaranya"
+			}
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ed520aa1-cfb3-4fd7-a339-1e2e3f599e91",
+		"tenantId": "956605c3-9a0a-4996-908a-151b930d5aa9"
+	}
+}

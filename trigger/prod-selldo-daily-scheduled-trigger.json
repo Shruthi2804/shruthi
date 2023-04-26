@@ -1,0 +1,44 @@
+{
+	"name": "prod-selldo-daily-scheduled-trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "update-selldo-tbls-pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"keys": [
+						"leads",
+						"calls",
+						"emails",
+						"followups",
+						"site_visits",
+						"smss",
+						"whatsapps"
+					],
+					"date": "@trigger().startTime"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-12-04T10:52:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						6
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,336 @@
+{
+	"name": "berlin_process",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": {
+								"value": "@pipeline().parameters.filepath",
+								"type": "Expression"
+							},
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.filename",
+								"type": "Expression"
+							},
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "WO_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WO_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BOQ_ITEM_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BOQ_ITEM_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ABSTRACT_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ABSTRACT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WORK_ORDER_NO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WORK_ORDER_NO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BOQ_NAME",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BOQ_NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ABSTRACT_NO",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ABSTRACT_NO",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PROJECT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PROJECT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SUB_PROJECT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SUB_PROJECT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WORK_CATEGORY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WORK_CATEGORY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WORK_SUB_CATEGORY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WORK_SUB_CATEGORY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "STATUS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "STATUS",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WORK_START_DATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "WORK_START_DATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ABSTRACT_DATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ABSTRACT_DATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NEGO_QTY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NEGO_QTY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UPTO_PREV_BILL_QUANTIY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UPTO_PREV_BILL_QUANTIY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "THIS_BILL_QTY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "THIS_BILL_QTY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NEGO_AMT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NEGO_AMT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "THIS_BILL_RATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "THIS_BILL_RATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "RECOMM_RATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "RECOMM_RATE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "THIS_BILL_AMT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "THIS_BILL_AMT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BALANCE_QTY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BALANCE_QTY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UPTO_DATE_QTY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UPTO_DATE_QTY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UPTO_DATE_AMT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UPTO_DATE_AMT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "BALANCE_AMT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "BALANCE_AMT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CREATED_DATE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CREATED_DATE",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Test_folder_adls_filepath_tokyo",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "customer_berlindataset",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"filepath": {
+				"type": "string",
+				"defaultValue": "lake/erp/tokyo/"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "ABSTRACT*"
+			}
+		},
+		"folder": {
+			"name": "ERP-Dataingestion"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-03T12:46:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

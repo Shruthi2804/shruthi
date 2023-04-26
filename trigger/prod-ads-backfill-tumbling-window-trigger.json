@@ -1,0 +1,29 @@
+{
+	"name": "prod-ads-backfill-tumbling-window-trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipeline": {
+			"pipelineReference": {
+				"referenceName": "google-ads-runner-pipeline",
+				"type": "PipelineReference"
+			},
+			"parameters": {
+				"date": "@trigger().outputs.windowStartTime"
+			}
+		},
+		"type": "TumblingWindowTrigger",
+		"typeProperties": {
+			"frequency": "Hour",
+			"interval": 24,
+			"startTime": "2020-10-30T04:49:00Z",
+			"endTime": "2020-11-11T04:49:00Z",
+			"delay": "00:00:00",
+			"maxConcurrency": 1,
+			"retryPolicy": {
+				"intervalInSeconds": 30
+			},
+			"dependsOn": []
+		}
+	}
+}

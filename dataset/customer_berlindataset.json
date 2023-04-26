@@ -1,0 +1,318 @@
+{
+	"name": "customer_berlindataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "erp_ds_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "LEAD_AND_BOOKING_2021-07-19T19:49:25.1833367Z",
+				"folderPath": "lake/erp/tokyo/LEAD_AND_BOOKING",
+				"fileSystem": "tvse"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SALES_ACCOUNT_ID",
+				"type": "String"
+			},
+			{
+				"name": "CUSTOMER_ID",
+				"type": "String"
+			},
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "First_Name",
+				"type": "String"
+			},
+			{
+				"name": "Last_Name",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Date_of_Birth",
+				"type": "String"
+			},
+			{
+				"name": "Relationship",
+				"type": "String"
+			},
+			{
+				"name": "Realative_name",
+				"type": "String"
+			},
+			{
+				"name": "Anniversary",
+				"type": "String"
+			},
+			{
+				"name": "Company",
+				"type": "String"
+			},
+			{
+				"name": "Designation",
+				"type": "String"
+			},
+			{
+				"name": "Occupation",
+				"type": "String"
+			},
+			{
+				"name": "Residing_Nation",
+				"type": "String"
+			},
+			{
+				"name": "Nationality",
+				"type": "String"
+			},
+			{
+				"name": "Aadhar_No",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "PAN_ID",
+				"type": "String"
+			},
+			{
+				"name": "Passport_No",
+				"type": "String"
+			},
+			{
+				"name": "Followup_Date",
+				"type": "String"
+			},
+			{
+				"name": "Interested_in_Project",
+				"type": "String"
+			},
+			{
+				"name": "Interested_in_Sub_Project",
+				"type": "String"
+			},
+			{
+				"name": "Interested_in_Unit_Type",
+				"type": "String"
+			},
+			{
+				"name": "Lead_Type",
+				"type": "String"
+			},
+			{
+				"name": "Enquiry_Source",
+				"type": "String"
+			},
+			{
+				"name": "Sub_Enquiry_Source",
+				"type": "String"
+			},
+			{
+				"name": "Assign_To",
+				"type": "String"
+			},
+			{
+				"name": "Reference",
+				"type": "String"
+			},
+			{
+				"name": "Created_By",
+				"type": "String"
+			},
+			{
+				"name": "Lead_Created_Date",
+				"type": "String"
+			},
+			{
+				"name": "Closure_Target_Date",
+				"type": "String"
+			},
+			{
+				"name": "Date_of_Creation",
+				"type": "String"
+			},
+			{
+				"name": "Residence_Street",
+				"type": "String"
+			},
+			{
+				"name": "Residence_Country",
+				"type": "String"
+			},
+			{
+				"name": "Residence_State",
+				"type": "String"
+			},
+			{
+				"name": "Residence_City",
+				"type": "String"
+			},
+			{
+				"name": "Residence_PIN",
+				"type": "String"
+			},
+			{
+				"name": "Residence_Phone1",
+				"type": "String"
+			},
+			{
+				"name": "Residence_Phone2",
+				"type": "String"
+			},
+			{
+				"name": "Residence_Mobile1",
+				"type": "String"
+			},
+			{
+				"name": "Residence_Mobile2",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_Street",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_Country",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_State",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_City",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_PIN",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_Phone1",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_Phone2",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_Mobile1",
+				"type": "String"
+			},
+			{
+				"name": "Permanent_Mobile2",
+				"type": "String"
+			},
+			{
+				"name": "Booking_type",
+				"type": "String"
+			},
+			{
+				"name": "Unit_No",
+				"type": "String"
+			},
+			{
+				"name": "Unit_Type",
+				"type": "String"
+			},
+			{
+				"name": "Booking_date",
+				"type": "String"
+			},
+			{
+				"name": "Booking_through",
+				"type": "String"
+			},
+			{
+				"name": "Finance",
+				"type": "String"
+			},
+			{
+				"name": "Payment_plan",
+				"type": "String"
+			},
+			{
+				"name": "Co_applicant_name",
+				"type": "String"
+			},
+			{
+				"name": "Co_Realationship",
+				"type": "String"
+			},
+			{
+				"name": "Co_Nationality",
+				"type": "String"
+			},
+			{
+				"name": "Co_Applicant_Aadhar_no",
+				"type": "String"
+			},
+			{
+				"name": "Co_Applicant_PAN_no",
+				"type": "String"
+			},
+			{
+				"name": "Agreement_date",
+				"type": "String"
+			},
+			{
+				"name": "Registration_date",
+				"type": "String"
+			},
+			{
+				"name": "Counter_discount_amount",
+				"type": "String"
+			},
+			{
+				"name": "Broker_discount_amount",
+				"type": "String"
+			},
+			{
+				"name": "Total_Discount_Amount",
+				"type": "String"
+			},
+			{
+				"name": "Total_agreement_value",
+				"type": "String"
+			},
+			{
+				"name": "Net_charges_payable",
+				"type": "String"
+			},
+			{
+				"name": "Net_taxes_payable",
+				"type": "String"
+			},
+			{
+				"name": "Net_Payable",
+				"type": "String"
+			},
+			{
+				"name": "CREATED_DATE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

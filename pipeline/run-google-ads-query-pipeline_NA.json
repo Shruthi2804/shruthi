@@ -1,0 +1,374 @@
+{
+	"name": "run-google-ads-query-pipeline_NA",
+	"properties": {
+		"activities": [
+			{
+				"name": "for_each_query",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "function_app_json_body_lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.queries",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "query",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "query",
+								"value": {
+									"value": "@replace(string(item()), '\"', '\\\"')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "file_system",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "file_system",
+								"value": "tvse"
+							}
+						},
+						{
+							"name": "storage_url",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "date",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "url",
+								"value": {
+									"value": "@concat('lake/google-ads/raw/','%s','/ad-account=',pipeline().parameters.ad,'/date=',variables('date'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "date",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "date",
+								"value": {
+									"value": "@pipeline().parameters.date",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "google-ads-azure-function",
+							"type": "AzureFunctionActivity",
+							"dependsOn": [
+								{
+									"activity": "replace_query",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"functionName": {
+									"value": "google-ads-http-trigger-func",
+									"type": "Expression"
+								},
+								"method": "POST",
+								"body": {
+									"value": "@variables('replace_query')",
+									"type": "Expression"
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "azure_function_ads_linked_service",
+								"type": "LinkedServiceReference"
+							}
+						},
+						{
+							"name": "json_body_from_linked_activity",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "query",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "storage_url",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "file_system",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "json_body",
+								"value": {
+									"value": "@string(activity('function_app_json_body_lookup').output.firstRow)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "replace_ads",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "json_body_from_linked_activity",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "replace_ads",
+								"value": {
+									"value": "@replace(variables('json_body'), '%ad%', pipeline().parameters.ad)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "replace_storage",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "replace_ads",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "replace_storage",
+								"value": {
+									"value": "@replace(variables('replace_ads'), '%storage%', variables('file_system'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "replace_url",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "replace_storage",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "replace_url",
+								"value": {
+									"value": "@replace(variables('replace_storage'), '%url%', variables('url'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "replace_date",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "replace_url",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "replace_date",
+								"value": {
+									"value": "@replace(variables('replace_url'), '%date%', variables('date'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "replace_query",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "replace_date",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "replace_query",
+								"value": {
+									"value": "@replace(variables('replace_date'), '%query%', variables('query'))",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "databricks-meta-data-update-activity",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "google-ads-azure-function",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": {
+									"value": "@pipeline().globalParameters.databricks_metadata_update_notebook_path",
+									"type": "Expression"
+								},
+								"baseParameters": {
+									"table_name": {
+										"value": "@concat(pipeline().globalParameters.environment, '_' , item().table)",
+										"type": "Expression"
+									},
+									"ad_account": {
+										"value": "@pipeline().parameters.ad",
+										"type": "Expression"
+									},
+									"date": {
+										"value": "@variables('date')",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "metadata_mgt_databricks_linked_service",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "function_app_json_body_lookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "google_ads_function_app_post_body",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"ad": {
+				"type": "string"
+			},
+			"queries": {
+				"type": "array"
+			},
+			"date": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"query": {
+				"type": "String"
+			},
+			"date": {
+				"type": "String"
+			},
+			"url": {
+				"type": "String"
+			},
+			"file_system": {
+				"type": "String"
+			},
+			"json_body": {
+				"type": "String"
+			},
+			"replace_ads": {
+				"type": "String"
+			},
+			"replace_storage": {
+				"type": "String"
+			},
+			"replace_url": {
+				"type": "String"
+			},
+			"replace_date": {
+				"type": "String"
+			},
+			"replace_query": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "google-ads"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-03T12:46:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

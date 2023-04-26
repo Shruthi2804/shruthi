@@ -1,0 +1,22 @@
+{
+	"name": "erp_deltatable_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "erp_deltalake_databricks_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"database": {
+				"type": "string",
+				"defaultValue": "tvse"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricksDeltaLakeDataset",
+		"typeProperties": {
+			"database": "tvse"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

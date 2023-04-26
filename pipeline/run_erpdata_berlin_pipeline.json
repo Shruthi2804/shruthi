@@ -1,0 +1,163 @@
+{
+	"name": "run_erpdata_berlin_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "listtables",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "Select \n* \nFROM\n[dev-erp].INFORMATION_SCHEMA.TABLES\nwhere table_type = 'BASE TABLE'\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "erptablelist",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "tableiteration",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "listtables",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('listtables').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "erpexport",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "datatables",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@item().table_name",
+											"type": "Expression"
+										},
+										"SchemaName": {
+											"value": "@item().table_schema",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "datalaketables",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@concat(item().table_name,'_',pipeline().TriggerTime)",
+											"type": "Expression"
+										},
+										"FolderName": {
+											"value": "@item().table_name",
+											"type": "Expression"
+										},
+										"Folderpath": "lake/erp/tokyo/"
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Tokyo_to_Berlin",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "tableiteration",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.tokyotoberlin",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "ERP-Dataingestion"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-03T12:46:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

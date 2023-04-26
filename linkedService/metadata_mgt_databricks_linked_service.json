@@ -1,0 +1,23 @@
+{
+	"name": "metadata_mgt_databricks_linked_service",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "@pipeline().globalParameters.databricks_workspace_domain_id",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@pipeline().globalParameters.databricks_user_access_key",
+					"type": "Expression"
+				}
+			},
+			"existingClusterId": "@pipeline().globalParameters.databricks_metadata_update_cluster_id"
+		}
+	}
+}

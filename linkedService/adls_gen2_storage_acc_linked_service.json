@@ -1,0 +1,19 @@
+{
+	"name": "adls_gen2_storage_acc_linked_service",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "@pipeline().globalParameters.adls_storage_account_url",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "@pipeline().globalParameters.storage_adls_secret_key"
+			}
+		}
+	}
+}

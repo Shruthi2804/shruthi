@@ -1,0 +1,19 @@
+{
+	"name": "BinarysinkforSPweb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "erp_ds_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "lake/walkins/tokyo",
+				"fileSystem": "tvse"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

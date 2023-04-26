@@ -1,0 +1,35 @@
+{
+	"name": "Datapurging",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "erp_ds_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderpath": {
+				"type": "string",
+				"defaultValue": "lake/erp/tokyo"
+			},
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().folderpath",
+					"type": "Expression"
+				},
+				"fileSystem": "tvse"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

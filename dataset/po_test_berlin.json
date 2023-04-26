@@ -1,0 +1,98 @@
+{
+	"name": "po_test_berlin",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "erp_ds_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "lake/erp/tokyo",
+				"fileSystem": "tvse"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\r",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PO_ID",
+				"type": "String"
+			},
+			{
+				"name": "Purchase_order",
+				"type": "String"
+			},
+			{
+				"name": "PO_category",
+				"type": "String"
+			},
+			{
+				"name": "certifying_company",
+				"type": "String"
+			},
+			{
+				"name": "PO_date",
+				"type": "String"
+			},
+			{
+				"name": "Supplier_name",
+				"type": "String"
+			},
+			{
+				"name": "Project",
+				"type": "String"
+			},
+			{
+				"name": "Sub_project",
+				"type": "String"
+			},
+			{
+				"name": "Indent_no",
+				"type": "String"
+			},
+			{
+				"name": "MATERIAL_NAME",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Total_PO_amount_PO_currency",
+				"type": "String"
+			},
+			{
+				"name": "Total_PO_amount_Base_currency",
+				"type": "String"
+			},
+			{
+				"name": "Material_rate",
+				"type": "String"
+			},
+			{
+				"name": "Material_cost",
+				"type": "String"
+			},
+			{
+				"name": "Tax_additions",
+				"type": "String"
+			},
+			{
+				"name": "All_Incl_costs",
+				"type": "String"
+			},
+			{
+				"name": "CREATED_DATE",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

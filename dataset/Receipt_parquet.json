@@ -1,0 +1,25 @@
+{
+	"name": "Receipt_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "erp_ds_ls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "erpdata"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "receipt_par",
+				"folderPath": "lake/erp/foundation/E&P",
+				"fileSystem": "tvse"
+			},
+			"compressionCodec": "none"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

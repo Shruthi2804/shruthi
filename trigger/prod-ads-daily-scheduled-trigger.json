@@ -1,0 +1,44 @@
+{
+	"name": "prod-ads-daily-scheduled-trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "google-ads-runner-pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"date": "@trigger().startTime"
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "facebook-ads-runner-pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"date": "@trigger().startTime"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-09-29T10:37:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						0
+					]
+				}
+			}
+		}
+	}
+}

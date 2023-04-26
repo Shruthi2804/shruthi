@@ -1,0 +1,24 @@
+{
+	"name": "google_ads_function_app_post_body",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_gen2_storage_acc_linked_service",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "google-ads"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "azure-function-post-body.json",
+				"folderPath": "lake/google-ads/data-factory/google-ads-meta-data",
+				"fileSystem": "tvse"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

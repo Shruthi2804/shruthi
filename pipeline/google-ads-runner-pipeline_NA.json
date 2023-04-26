@@ -1,0 +1,187 @@
+{
+	"name": "google-ads-runner-pipeline_NA",
+	"properties": {
+		"description": "This is will get all the ads and run it in a loop, reading the queries file and passing all queries to the other pipeline",
+		"activities": [
+			{
+				"name": "read_ads_queries_json_lookup_activity",
+				"description": "This is a lookup activity to read json file from ADLS storage.",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "google_ads_queries_ds",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "foreach_ads_activity",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "read_ads_queries_json_lookup_activity",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('read_ads_queries_json_lookup_activity').output.firstRow.ads",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "ads",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "ad",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "queries",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "queries",
+								"value": {
+									"value": "@activity('read_ads_queries_json_lookup_activity').output.firstRow.queries",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "execute_ads_query_pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "ads",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "queries",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "run-google-ads-query-pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ad": {
+										"value": "@variables('ad')",
+										"type": "Expression"
+									},
+									"queries": {
+										"value": "@variables('queries')",
+										"type": "Expression"
+									},
+									"date": {
+										"value": "@addDays(pipeline().parameters.date, -1, 'yyyy-MM-dd')",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "execute_ads_query_pipeline_old",
+							"description": "This is added to run a day older pipeline for google to adjust metrics ( data freshness )",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "queries",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								},
+								{
+									"activity": "ads",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "run-google-ads-query-pipeline",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"ad": {
+										"value": "@variables('ad')",
+										"type": "Expression"
+									},
+									"queries": {
+										"value": "@variables('queries')",
+										"type": "Expression"
+									},
+									"date": {
+										"value": "@addDays(pipeline().parameters.date, -2, 'yyyy-MM-dd')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"date": {
+				"type": "string",
+				"defaultValue": "@trigger().outputs.windowStartTime"
+			}
+		},
+		"variables": {
+			"ad": {
+				"type": "String"
+			},
+			"queries": {
+				"type": "Array"
+			}
+		},
+		"folder": {
+			"name": "google-ads"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-03T12:46:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

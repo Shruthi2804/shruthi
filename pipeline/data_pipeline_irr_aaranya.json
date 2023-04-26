@@ -1,0 +1,394 @@
+{
+	"name": "data_pipeline_irr_aaranya",
+	"properties": {
+		"activities": [
+			{
+				"name": "data_ingestion_static",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_ingestion_tx_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_static_aaranya",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "aaranya",
+						"inputfile_projectname": "Aaranya",
+						"project_name": "Aaranya"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_ingestion_tx_data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_ingestion",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "aaranya",
+						"inventory_sheet_nm1": "Aaranya VD Ph1",
+						"inventory_sheet_nm2": "0",
+						"location": "Vengaivasal",
+						"project_name": "Aaranya",
+						"inputfile_projectname": "Aaranya"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_tx_collection",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_tx_sales_agmnts",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_collections_aaranya",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "atrium",
+						"sheme_flag": "0",
+						"equity_irr_flag": "0"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_tx_constrction",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_tx_collection",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_construction",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "atrium",
+						"gst": "0.18",
+						"gst_value": "1.18",
+						"plot_flag": "0",
+						"project_name": "Atrium",
+						"vowd_project_name": "GA_GD_Phase_03"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_othercost_cashflow",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_tx_constrction",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_othercost_aaranya",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "atrium",
+						"gst": "0.18",
+						"gst_value": "1.18",
+						"gst_approval_value": "1.09",
+						"project_name": "Atrium"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_ingestion_vowd",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_vowd",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"project_name": "Aaranya"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_dashboard_load",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_irr",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_dashboard_load",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "atrium",
+						"inputfile_projectname": "Atrium",
+						"project_name": "Atrium",
+						"vowd_project_name": "GA_GD_Phase_03",
+						"project_filesuffix": "all_projects"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_irr",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "cashflow",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_calculate_xirr_equityirr",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "atrium"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_ingestion_bplan",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_bplan",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "atrium",
+						"inputfile_projectname": "Atrium",
+						"project_name": "Atrium"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "cashflow",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_othercost_cashflow",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_cashflow",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"file_suffix": "hamlet",
+						"project_name": "Hamlet"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "data_tx_sales_agmnts",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_ingestion_static",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "data_ingestion_vowd",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.data_irr_sales_aggmnts",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"aggre_cal_percent_curr": "0.75",
+						"aggre_cal_percent_prev": "0.25",
+						"aggre_cal_percent_prevpre": "0",
+						"file_suffix": "aaranya",
+						"scheme_block": "0",
+						"scheme_flag": "0",
+						"scheme_block_1": "0",
+						"scheme_block_1_name_filter": "0",
+						"scheme_block_name_filter": "0"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "irr"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-20T06:30:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

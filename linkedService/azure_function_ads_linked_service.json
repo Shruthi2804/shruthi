@@ -1,0 +1,22 @@
+{
+	"name": "azure_function_ads_linked_service",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureFunction",
+		"annotations": [],
+		"typeProperties": {
+			"functionAppUrl": "@pipeline().globalParameters.ads_function_url",
+			"functionKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@pipeline().globalParameters.ads_function_secret_key",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}

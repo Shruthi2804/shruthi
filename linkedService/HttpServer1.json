@@ -1,0 +1,13 @@
+{
+	"name": "HttpServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://tvshosur.sharepoint.com/:x:/r/sites/TVSEmeraldDatafoundation/_layouts/15/Doc.aspx?sourcedoc=%7B6B32AB56-F47D-47B0-BD4F-B1A53C7450A1%7D&file=CRM_Data_capture%20(2).xlsx&action=default&mobileredirect=true",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

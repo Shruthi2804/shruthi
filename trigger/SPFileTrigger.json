@@ -1,0 +1,26 @@
+{
+	"name": "SPFileTrigger",
+	"properties": {
+		"description": "Event based trigger for SP file processing",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "SPFiles_Automation_trigger",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/tvse/blobs/lake/walkins/tokyo/config/ctrl_trigger",
+			"blobPathEndsWith": "lake/walkins/tokyo/config/ctrl_trigger",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/8abd835b-e1b7-413d-a6a6-c95bf4a43330/resourceGroups/prod_tvse_central_da_rg/providers/Microsoft.Storage/storageAccounts/prodcentralstorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

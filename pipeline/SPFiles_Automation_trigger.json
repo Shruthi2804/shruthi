@@ -1,0 +1,36 @@
+{
+	"name": "SPFiles_Automation_trigger",
+	"properties": {
+		"activities": [
+			{
+				"name": "SPFiles",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().globalParameters.SPfiles_Databricks_trigger_notebookpath",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "metadata_mgt_databricks_linked_service",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "manual_files_automation"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-03-03T12:46:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
