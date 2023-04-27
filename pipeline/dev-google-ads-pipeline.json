@@ -1,0 +1,58 @@
+{
+	"name": "dev-google-ads-pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('queries')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "query_var",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "test",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"ads": {
+				"type": "Array",
+				"defaultValue": [
+					"423432432",
+					"343434324"
+				]
+			},
+			"queries": {
+				"type": "Array",
+				"defaultValue": [
+					"['{\"key\":\"val\"}']"
+				]
+			},
+			"test": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "google ads"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-29T02:10:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

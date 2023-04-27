@@ -1,0 +1,17 @@
+{
+	"name": "dev-tvse-central-da-data-factory-workspace",
+	"properties": {
+		"globalParameters": {
+			"env": {
+				"type": "string",
+				"value": "dev"
+			}
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "bdb02330-743f-4577-b048-836ad99ca524",
+		"tenantId": "956605c3-9a0a-4996-908a-151b930d5aa9"
+	}
+}

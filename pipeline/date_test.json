@@ -1,0 +1,49 @@
+{
+	"name": "date_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "date",
+					"value": {
+						"value": "@pipeline().parameters.startTime",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"triggerTime": {
+				"type": "string",
+				"defaultValue": "@pipeline().TriggerTime"
+			},
+			"startTime": {
+				"type": "string",
+				"defaultValue": "@trigger().outputs.windowStartTime"
+			},
+			"endTime": {
+				"type": "string",
+				"defaultValue": "@trigger().outputs.windowEndTime"
+			},
+			"scheduledTime": {
+				"type": "string",
+				"defaultValue": "@trigger().scheduledTime\t"
+			}
+		},
+		"variables": {
+			"date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "google ads"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-29T02:10:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

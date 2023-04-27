@@ -1,0 +1,48 @@
+{
+	"name": "google_ads_queries_ds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_linked_service",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "ads-queries.json",
+				"folderPath": "google-ads/ads-meta-data",
+				"fileSystem": "tvse"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"ads-account": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"queries": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"query": {
+								"type": "string"
+							},
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

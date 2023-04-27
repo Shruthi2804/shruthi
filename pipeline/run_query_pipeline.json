@@ -1,0 +1,54 @@
+{
+	"name": "run_query_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.queries",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "query",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "query",
+								"value": {
+									"value": "@string(item())",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ads": {
+				"type": "string"
+			},
+			"queries": {
+				"type": "array"
+			}
+		},
+		"variables": {
+			"query": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "google ads"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-29T02:10:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

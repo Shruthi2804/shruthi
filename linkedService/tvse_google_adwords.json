@@ -1,0 +1,14 @@
+{
+	"name": "tvse_google_adwords",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "GoogleAdWords",
+		"typeProperties": {
+			"clientCustomerID": "8979592337",
+			"authenticationType": "UserAuthentication",
+			"clientId": "760443842250-qi75f4pjn0tdmob74f9iu4pv4u035rcm.apps.googleusercontent.com",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRFVi1UVlNFLUNFTlRSQUwtREEtREFUQS1GQUNUT1JZLVdPUktTUEFDRV9kZDNhMzNhYi1lZjA0LTRlNTAtOWI4OS1hYjg3N2QyMTllN2IiDQp9"
+		}
+	}
+}

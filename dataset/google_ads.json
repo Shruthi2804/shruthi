@@ -1,0 +1,21 @@
+{
+	"name": "google_ads",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adls_linked_service",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "temp1.json",
+				"folderPath": "google-ads",
+				"fileSystem": "tvse"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
