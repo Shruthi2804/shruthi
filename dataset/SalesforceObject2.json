@@ -1,0 +1,12 @@
+{
+	"name": "SalesforceObject2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Salesforce_Migration",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": []
+	}
+}
