@@ -5,6 +5,12 @@
 			"referenceName": "Salesforce_Migration",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Lead": {
+				"type": "object",
+				"defaultValue": "Lead"
+			}
+		},
 		"annotations": [],
 		"type": "SalesforceObject",
 		"schema": [],
