@@ -1,0 +1,111 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dev-tvse-central-da-data-factory-workspace"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage3_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"ERPCluster_accessToken": {
+			"value": ""
+		},
+		"Salesforce1_password": {
+			"value": ""
+		},
+		"Salesforce1_securityToken": {
+			"value": ""
+		},
+		"Salesforce_Dev_Migration_password": {
+			"value": ""
+		},
+		"Salesforce_Dev_Migration_securityToken": {
+			"value": ""
+		},
+		"Salesforce_Sample_password": {
+			"value": ""
+		},
+		"Salesforce_Sample_securityToken": {
+			"value": ""
+		},
+		"google_adwords_linked_service_developerToken": {
+			"value": ""
+		},
+		"google_adwords_linked_service_clientSecret": {
+			"value": ""
+		},
+		"google_adwords_linked_service_refreshToken": {
+			"value": ""
+		},
+		"tvse_google_adwords_developerToken": {
+			"value": ""
+		},
+		"tvse_google_adwords_clientSecret": {
+			"value": ""
+		},
+		"tvse_google_adwords_refreshToken": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://prodcentralstorage.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage3_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
+		},
+		"Salesforce1_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
+		"Salesforce1_properties_typeProperties_username": {
+			"value": "deepak.kumar@tvsmotor.com"
+		},
+		"Salesforce_Dev_Migration_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
+		"Salesforce_Dev_Migration_properties_typeProperties_username": {
+			"value": "deepak.kumar@tvsmotor.com"
+		},
+		"Salesforce_Sample_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
+		"Salesforce_Sample_properties_typeProperties_username": {
+			"value": "deepak.kumar@tvsmotor.com"
+		},
+		"adls_linked_service_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net"
+		},
+		"google_adwords_linked_service_properties_typeProperties_clientId": {
+			"value": "760443842250-qi75f4pjn0tdmob74f9iu4pv4u035rcm.apps.googleusercontent.com"
+		},
+		"tvse_google_adwords_properties_typeProperties_clientId": {
+			"value": "760443842250-qi75f4pjn0tdmob74f9iu4pv4u035rcm.apps.googleusercontent.com"
+		},
+		"scheduledTrigger_properties_date_test_parameters_triggerTime": {
+			"value": "@trigger().startTime"
+		},
+		"scheduledTrigger_properties_date_test_parameters_scheduledTime": {
+			"value": "@trigger().scheduledTime"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
