@@ -2,20 +2,20 @@
 	"name": "SalesforceObject2",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Salesforce_Migration",
+			"referenceName": "Salesforce_Dev_Migration",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Lead": {
+			"Inventory": {
 				"type": "object",
-				"defaultValue": "Lead"
+				"defaultValue": "Inventory"
 			}
 		},
 		"annotations": [],
 		"type": "SalesforceObject",
 		"schema": [],
 		"typeProperties": {
-			"objectApiName": "Lead"
+			"objectApiName": "Apartment__c"
 		}
 	}
 }

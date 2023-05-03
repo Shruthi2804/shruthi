@@ -42,8 +42,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "inventory",
-						"type": "DatasetReference"
+						"referenceName": "SalesforceObject2",
+						"type": "DatasetReference",
+						"parameters": {
+							"Inventory": "Inventory"
+						}
 					}
 				],
 				"outputs": [
