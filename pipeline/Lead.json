@@ -25,12 +25,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"metadata": [
-								{
-									"value": ""
-								}
-							]
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -51,7 +46,10 @@
 				"inputs": [
 					{
 						"referenceName": "SalesforceObject2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Inventory": "Inventory"
+						}
 					}
 				],
 				"outputs": [
