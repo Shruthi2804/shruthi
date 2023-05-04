@@ -1,0 +1,3661 @@
+{
+	"name": "Opportunity_Prod",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SalesforceSource",
+						"readBehavior": {
+							"value": "select * from Opportunity",
+							"type": "Expression"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Id",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"name": "IsDeleted",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"name": "AccountId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"name": "Name",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"name": "Description",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"name": "StageName",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 6
+								}
+							},
+							{
+								"source": {
+									"name": "Amount",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 7
+								}
+							},
+							{
+								"source": {
+									"name": "Probability",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 8
+								}
+							},
+							{
+								"source": {
+									"name": "CloseDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 9
+								}
+							},
+							{
+								"source": {
+									"name": "Type",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 10
+								}
+							},
+							{
+								"source": {
+									"name": "NextStep",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 11
+								}
+							},
+							{
+								"source": {
+									"name": "LeadSource",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 12
+								}
+							},
+							{
+								"source": {
+									"name": "IsClosed",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 13
+								}
+							},
+							{
+								"source": {
+									"name": "IsWon",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 14
+								}
+							},
+							{
+								"source": {
+									"name": "ForecastCategory",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 15
+								}
+							},
+							{
+								"source": {
+									"name": "ForecastCategoryName",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 16
+								}
+							},
+							{
+								"source": {
+									"name": "CampaignId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 17
+								}
+							},
+							{
+								"source": {
+									"name": "HasOpportunityLineItem",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 18
+								}
+							},
+							{
+								"source": {
+									"name": "Pricebook2Id",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 19
+								}
+							},
+							{
+								"source": {
+									"name": "OwnerId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 20
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 21
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedById",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 22
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 23
+								}
+							},
+							{
+								"source": {
+									"name": "LastModifiedById",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 24
+								}
+							},
+							{
+								"source": {
+									"name": "SystemModstamp",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 25
+								}
+							},
+							{
+								"source": {
+									"name": "LastActivityDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 26
+								}
+							},
+							{
+								"source": {
+									"name": "PushCount",
+									"type": "Int32"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 27
+								}
+							},
+							{
+								"source": {
+									"name": "LastStageChangeDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 28
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalQuarter",
+									"type": "Int32"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 29
+								}
+							},
+							{
+								"source": {
+									"name": "FiscalYear",
+									"type": "Int32"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 30
+								}
+							},
+							{
+								"source": {
+									"name": "Fiscal",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 31
+								}
+							},
+							{
+								"source": {
+									"name": "ContactId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 32
+								}
+							},
+							{
+								"source": {
+									"name": "LastViewedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 33
+								}
+							},
+							{
+								"source": {
+									"name": "LastReferencedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 34
+								}
+							},
+							{
+								"source": {
+									"name": "ContractId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 35
+								}
+							},
+							{
+								"source": {
+									"name": "HasOpenActivity",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 36
+								}
+							},
+							{
+								"source": {
+									"name": "HasOverdueTask",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 37
+								}
+							},
+							{
+								"source": {
+									"name": "LastAmountChangedHistoryId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 38
+								}
+							},
+							{
+								"source": {
+									"name": "LastCloseDateChangedHistoryId",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 39
+								}
+							},
+							{
+								"source": {
+									"name": "Budget_Confirmed__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 40
+								}
+							},
+							{
+								"source": {
+									"name": "Discovery_Completed__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 41
+								}
+							},
+							{
+								"source": {
+									"name": "ROI_Analysis_Completed__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 42
+								}
+							},
+							{
+								"source": {
+									"name": "Loss_Reason__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 43
+								}
+							},
+							{
+								"source": {
+									"name": "Activity_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 44
+								}
+							},
+							{
+								"source": {
+									"name": "Admin_Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 45
+								}
+							},
+							{
+								"source": {
+									"name": "Age_Last_Modified__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 46
+								}
+							},
+							{
+								"source": {
+									"name": "Agreement_Amount_Received_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 47
+								}
+							},
+							{
+								"source": {
+									"name": "Agreement_Execution_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 48
+								}
+							},
+							{
+								"source": {
+									"name": "Agreement_Signed_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 49
+								}
+							},
+							{
+								"source": {
+									"name": "Allotment_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 50
+								}
+							},
+							{
+								"source": {
+									"name": "Apartment__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 51
+								}
+							},
+							{
+								"source": {
+									"name": "Application_Form__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 52
+								}
+							},
+							{
+								"source": {
+									"name": "Approval_Status__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 53
+								}
+							},
+							{
+								"source": {
+									"name": "Apt_Formula_Field_4__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 54
+								}
+							},
+							{
+								"source": {
+									"name": "Apt_Formula_Field_5__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 55
+								}
+							},
+							{
+								"source": {
+									"name": "Auto_Cancellation__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 56
+								}
+							},
+							{
+								"source": {
+									"name": "BKG_DT__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 57
+								}
+							},
+							{
+								"source": {
+									"name": "Balance_Amount_to_be_Disbursed__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 58
+								}
+							},
+							{
+								"source": {
+									"name": "Bank_Location__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 59
+								}
+							},
+							{
+								"source": {
+									"name": "Basement_1__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 60
+								}
+							},
+							{
+								"source": {
+									"name": "Basement_2__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 61
+								}
+							},
+							{
+								"source": {
+									"name": "Basement_3__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 62
+								}
+							},
+							{
+								"source": {
+									"name": "Blocking_Approval_Status__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 63
+								}
+							},
+							{
+								"source": {
+									"name": "Blocking_intimation_by__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 64
+								}
+							},
+							{
+								"source": {
+									"name": "Booked__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 65
+								}
+							},
+							{
+								"source": {
+									"name": "Booking_Amount_Receipt_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 66
+								}
+							},
+							{
+								"source": {
+									"name": "Booking_Cheque_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 67
+								}
+							},
+							{
+								"source": {
+									"name": "Booking_Date_for_Report__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 68
+								}
+							},
+							{
+								"source": {
+									"name": "Booking_Reference_Number__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 69
+								}
+							},
+							{
+								"source": {
+									"name": "Branch_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 70
+								}
+							},
+							{
+								"source": {
+									"name": "Brokerage_Payable__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 71
+								}
+							},
+							{
+								"source": {
+									"name": "Budget__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 72
+								}
+							},
+							{
+								"source": {
+									"name": "Blocking_Type__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 73
+								}
+							},
+							{
+								"source": {
+									"name": "Unblocking_date_and_time__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 74
+								}
+							},
+							{
+								"source": {
+									"name": "CSTMP__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 75
+								}
+							},
+							{
+								"source": {
+									"name": "Call_Connected__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 76
+								}
+							},
+							{
+								"source": {
+									"name": "Call_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 77
+								}
+							},
+							{
+								"source": {
+									"name": "Call_Summary__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 78
+								}
+							},
+							{
+								"source": {
+									"name": "Caller_Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 79
+								}
+							},
+							{
+								"source": {
+									"name": "Calling_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 80
+								}
+							},
+							{
+								"source": {
+									"name": "Cancellation_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 81
+								}
+							},
+							{
+								"source": {
+									"name": "CarPark_Numbers__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 82
+								}
+							},
+							{
+								"source": {
+									"name": "Car_Par_Allotment_Letter__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 83
+								}
+							},
+							{
+								"source": {
+									"name": "Car_Park_Allotment_Letter_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 84
+								}
+							},
+							{
+								"source": {
+									"name": "Client_Expectation__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 85
+								}
+							},
+							{
+								"source": {
+									"name": "Collection_Caller__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 86
+								}
+							},
+							{
+								"source": {
+									"name": "Collection_Callerr__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 87
+								}
+							},
+							{
+								"source": {
+									"name": "Collection_Status__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 88
+								}
+							},
+							{
+								"source": {
+									"name": "Company__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 89
+								}
+							},
+							{
+								"source": {
+									"name": "Component_Master__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 90
+								}
+							},
+							{
+								"source": {
+									"name": "Contact__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 91
+								}
+							},
+							{
+								"source": {
+									"name": "Customer_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 92
+								}
+							},
+							{
+								"source": {
+									"name": "Data_Entry__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 93
+								}
+							},
+							{
+								"source": {
+									"name": "Deal_Stage__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 94
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_Amount_Total__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 95
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_Approval__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 96
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_B__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 97
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_C__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 98
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_D__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 99
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 100
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_Type__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 101
+								}
+							},
+							{
+								"source": {
+									"name": "Disqualified_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 102
+								}
+							},
+							{
+								"source": {
+									"name": "Downgrade_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 103
+								}
+							},
+							{
+								"source": {
+									"name": "Dropped_Opportunity_Reason__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 104
+								}
+							},
+							{
+								"source": {
+									"name": "Dropped_opportunity_date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 105
+								}
+							},
+							{
+								"source": {
+									"name": "Days_Remaining_for_Unblocking__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 106
+								}
+							},
+							{
+								"source": {
+									"name": "ENQUIRY_FORM__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 107
+								}
+							},
+							{
+								"source": {
+									"name": "Email_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 108
+								}
+							},
+							{
+								"source": {
+									"name": "Email__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 109
+								}
+							},
+							{
+								"source": {
+									"name": "Enquiry_Ref_No__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 110
+								}
+							},
+							{
+								"source": {
+									"name": "Final_Payment_Pending_If_Any__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 111
+								}
+							},
+							{
+								"source": {
+									"name": "Finance_NOC_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 112
+								}
+							},
+							{
+								"source": {
+									"name": "Follow_up_date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 113
+								}
+							},
+							{
+								"source": {
+									"name": "GCLID__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 114
+								}
+							},
+							{
+								"source": {
+									"name": "GST_as_Applicable__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 115
+								}
+							},
+							{
+								"source": {
+									"name": "Generate_Payment_Schedule__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 116
+								}
+							},
+							{
+								"source": {
+									"name": "HQ_Engagement__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 117
+								}
+							},
+							{
+								"source": {
+									"name": "HQ_Meeting_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 118
+								}
+							},
+							{
+								"source": {
+									"name": "HQ_Meeting_Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 119
+								}
+							},
+							{
+								"source": {
+									"name": "Extension_Requested__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 120
+								}
+							},
+							{
+								"source": {
+									"name": "Identity_Proof__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 121
+								}
+							},
+							{
+								"source": {
+									"name": "Inclusive_Amt_Total__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 122
+								}
+							},
+							{
+								"source": {
+									"name": "IsCommissionAvailable__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 123
+								}
+							},
+							{
+								"source": {
+									"name": "KEY_PLAN_FLOOR_PLAN__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 124
+								}
+							},
+							{
+								"source": {
+									"name": "Keys_List_Verified__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 125
+								}
+							},
+							{
+								"source": {
+									"name": "Blocking_Extension_Approval_Status__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 126
+								}
+							},
+							{
+								"source": {
+									"name": "Digio_KID__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 127
+								}
+							},
+							{
+								"source": {
+									"name": "Lead_Created_Date_Time__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 128
+								}
+							},
+							{
+								"source": {
+									"name": "Lead_Created_Time__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 129
+								}
+							},
+							{
+								"source": {
+									"name": "Lead_Status__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 130
+								}
+							},
+							{
+								"source": {
+									"name": "Legacy_Remark__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 131
+								}
+							},
+							{
+								"source": {
+									"name": "Likely_Closure_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 132
+								}
+							},
+							{
+								"source": {
+									"name": "Loan_Account_Number__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 133
+								}
+							},
+							{
+								"source": {
+									"name": "Loan_Sanction_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 134
+								}
+							},
+							{
+								"source": {
+									"name": "Loan_with__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 135
+								}
+							},
+							{
+								"source": {
+									"name": "Maintenance_Agreement_Signed__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 136
+								}
+							},
+							{
+								"source": {
+									"name": "Make_Apt_Car_NULL__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 137
+								}
+							},
+							{
+								"source": {
+									"name": "Manager1_Email__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 138
+								}
+							},
+							{
+								"source": {
+									"name": "Manager_Email__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 139
+								}
+							},
+							{
+								"source": {
+									"name": "Meeting_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 140
+								}
+							},
+							{
+								"source": {
+									"name": "Minimum_Booking_Amount_Received__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 141
+								}
+							},
+							{
+								"source": {
+									"name": "Miscellaneous_Charges__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 142
+								}
+							},
+							{
+								"source": {
+									"name": "Mobile__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 143
+								}
+							},
+							{
+								"source": {
+									"name": "NOC_from_Finance__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 144
+								}
+							},
+							{
+								"source": {
+									"name": "Negotiated__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 145
+								}
+							},
+							{
+								"source": {
+									"name": "Net_Realization__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 146
+								}
+							},
+							{
+								"source": {
+									"name": "Next_St__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 147
+								}
+							},
+							{
+								"source": {
+									"name": "Note_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 148
+								}
+							},
+							{
+								"source": {
+									"name": "Number_of_Carpark__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 149
+								}
+							},
+							{
+								"source": {
+									"name": "DIGILOCKER_REQUEST_STATUS__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 150
+								}
+							},
+							{
+								"source": {
+									"name": "Digio_E_Sign_ID__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 151
+								}
+							},
+							{
+								"source": {
+									"name": "DIGIO_ESIGN_STATUS__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 152
+								}
+							},
+							{
+								"source": {
+									"name": "Send_DigiLocker__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 153
+								}
+							},
+							{
+								"source": {
+									"name": "Send_Digio_E_Sign__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 154
+								}
+							},
+							{
+								"source": {
+									"name": "Get_E_Sign_Document__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 155
+								}
+							},
+							{
+								"source": {
+									"name": "Booking_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 156
+								}
+							},
+							{
+								"source": {
+									"name": "Recived_Amount_Cleared__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 157
+								}
+							},
+							{
+								"source": {
+									"name": "Offer_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 158
+								}
+							},
+							{
+								"source": {
+									"name": "Offer__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 159
+								}
+							},
+							{
+								"source": {
+									"name": "Opp_Created_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 160
+								}
+							},
+							{
+								"source": {
+									"name": "OpportunityDetail__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 161
+								}
+							},
+							{
+								"source": {
+									"name": "Opportunity_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 162
+								}
+							},
+							{
+								"source": {
+									"name": "Opportunity_Total__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 163
+								}
+							},
+							{
+								"source": {
+									"name": "Opportunity_Upload_Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 164
+								}
+							},
+							{
+								"source": {
+									"name": "Opportuntiy_Number__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 165
+								}
+							},
+							{
+								"source": {
+									"name": "Other_Charges_Report__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 166
+								}
+							},
+							{
+								"source": {
+									"name": "Other_Deductions__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 167
+								}
+							},
+							{
+								"source": {
+									"name": "Over_Due_Interest_waived__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 168
+								}
+							},
+							{
+								"source": {
+									"name": "Overall_Brokerage_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 169
+								}
+							},
+							{
+								"source": {
+									"name": "Owner_Manager_Email__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 170
+								}
+							},
+							{
+								"source": {
+									"name": "Owner_Manager__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 171
+								}
+							},
+							{
+								"source": {
+									"name": "Owner_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 172
+								}
+							},
+							{
+								"source": {
+									"name": "Owner_Role_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 173
+								}
+							},
+							{
+								"source": {
+									"name": "PB_NO__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 174
+								}
+							},
+							{
+								"source": {
+									"name": "PTP_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 175
+								}
+							},
+							{
+								"source": {
+									"name": "PTP_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 176
+								}
+							},
+							{
+								"source": {
+									"name": "Payment_Schedule__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 177
+								}
+							},
+							{
+								"source": {
+									"name": "Photographs__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 178
+								}
+							},
+							{
+								"source": {
+									"name": "Physical_booking_file_received__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 179
+								}
+							},
+							{
+								"source": {
+									"name": "Pipeline_Value_Cr__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 180
+								}
+							},
+							{
+								"source": {
+									"name": "Place_of_Agreement__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 181
+								}
+							},
+							{
+								"source": {
+									"name": "Possession_Letter_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 182
+								}
+							},
+							{
+								"source": {
+									"name": "Possession_Letter__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 183
+								}
+							},
+							{
+								"source": {
+									"name": "Project_Interested__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 184
+								}
+							},
+							{
+								"source": {
+									"name": "Project_Referred_to__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 185
+								}
+							},
+							{
+								"source": {
+									"name": "Propose_discount_Amt_Sft__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 186
+								}
+							},
+							{
+								"source": {
+									"name": "Quotation_Count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 187
+								}
+							},
+							{
+								"source": {
+									"name": "Rating__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 188
+								}
+							},
+							{
+								"source": {
+									"name": "Reason__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 189
+								}
+							},
+							{
+								"source": {
+									"name": "Referred_By_Customer_Mobile__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 190
+								}
+							},
+							{
+								"source": {
+									"name": "Referred_By_Employee_Mobile__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 191
+								}
+							},
+							{
+								"source": {
+									"name": "Referred_Employee__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 192
+								}
+							},
+							{
+								"source": {
+									"name": "Referred_Opportunity__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 193
+								}
+							},
+							{
+								"source": {
+									"name": "Refunded_to_Customer__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 194
+								}
+							},
+							{
+								"source": {
+									"name": "Registration_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 195
+								}
+							},
+							{
+								"source": {
+									"name": "Registration_No__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 196
+								}
+							},
+							{
+								"source": {
+									"name": "Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 197
+								}
+							},
+							{
+								"source": {
+									"name": "Request_for__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 198
+								}
+							},
+							{
+								"source": {
+									"name": "Rera_Project_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 199
+								}
+							},
+							{
+								"source": {
+									"name": "Revisit_Initiated__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 200
+								}
+							},
+							{
+								"source": {
+									"name": "Construction_Agreement_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 201
+								}
+							},
+							{
+								"source": {
+									"name": "Cancel__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 202
+								}
+							},
+							{
+								"source": {
+									"name": "Cancel_Count__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 203
+								}
+							},
+							{
+								"source": {
+									"name": "DIGILOCKER_FILE_ID__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 204
+								}
+							},
+							{
+								"source": {
+									"name": "CP_Contact_User__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 205
+								}
+							},
+							{
+								"source": {
+									"name": "Opp_Protection_expires_at__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 206
+								}
+							},
+							{
+								"source": {
+									"name": "REAR_No__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 207
+								}
+							},
+							{
+								"source": {
+									"name": "Brokerage_percentage__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 208
+								}
+							},
+							{
+								"source": {
+									"name": "CP_Pan_No__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 209
+								}
+							},
+							{
+								"source": {
+									"name": "Second_Prefered_Unit__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 210
+								}
+							},
+							{
+								"source": {
+									"name": "Digio_Document_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 211
+								}
+							},
+							{
+								"source": {
+									"name": "Other_charges_w_o_taxes__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 212
+								}
+							},
+							{
+								"source": {
+									"name": "Other_charges_with_taxes__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 213
+								}
+							},
+							{
+								"source": {
+									"name": "Sales_Consideration_w_o_taxes__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 214
+								}
+							},
+							{
+								"source": {
+									"name": "Sales_Consideration_with_taxes__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 215
+								}
+							},
+							{
+								"source": {
+									"name": "Basic_Rate_after_Discount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 216
+								}
+							},
+							{
+								"source": {
+									"name": "Sale_Deed_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 217
+								}
+							},
+							{
+								"source": {
+									"name": "Sale_Deed_Number__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 218
+								}
+							},
+							{
+								"source": {
+									"name": "Salesperson_1__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 219
+								}
+							},
+							{
+								"source": {
+									"name": "Salesperson_2__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 220
+								}
+							},
+							{
+								"source": {
+									"name": "Scheme__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 221
+								}
+							},
+							{
+								"source": {
+									"name": "Secondary_Email__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 222
+								}
+							},
+							{
+								"source": {
+									"name": "Secondary_Mobile__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 223
+								}
+							},
+							{
+								"source": {
+									"name": "Secondary_Source__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 224
+								}
+							},
+							{
+								"source": {
+									"name": "Signed_Documents_Application_Form_Enquir__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 225
+								}
+							},
+							{
+								"source": {
+									"name": "Site_Visit_Lost_Reason__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 226
+								}
+							},
+							{
+								"source": {
+									"name": "Site_Visit_Source__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 227
+								}
+							},
+							{
+								"source": {
+									"name": "Snag_List_Cleared__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 228
+								}
+							},
+							{
+								"source": {
+									"name": "Specification__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 229
+								}
+							},
+							{
+								"source": {
+									"name": "Stamp_Duty_Registration_Charges__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 230
+								}
+							},
+							{
+								"source": {
+									"name": "Subs_Site_Visit_Virtual__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 231
+								}
+							},
+							{
+								"source": {
+									"name": "Subsequent_Meeting_Remarks__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 232
+								}
+							},
+							{
+								"source": {
+									"name": "Subsequent_Meeting_Time__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 233
+								}
+							},
+							{
+								"source": {
+									"name": "Suggested_Action_by_Management__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 234
+								}
+							},
+							{
+								"source": {
+									"name": "Template_Master__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 235
+								}
+							},
+							{
+								"source": {
+									"name": "Term_Master__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 236
+								}
+							},
+							{
+								"source": {
+									"name": "Time_of_Visit_lead__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 237
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Received__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 238
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Sale_Consideration__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 239
+								}
+							},
+							{
+								"source": {
+									"name": "TrackingNumber__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 240
+								}
+							},
+							{
+								"source": {
+									"name": "Trf_reassign_canc_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 241
+								}
+							},
+							{
+								"source": {
+									"name": "Unqualified_Reason__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 242
+								}
+							},
+							{
+								"source": {
+									"name": "Unqualified__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 243
+								}
+							},
+							{
+								"source": {
+									"name": "Update_Tax__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 244
+								}
+							},
+							{
+								"source": {
+									"name": "Values__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 245
+								}
+							},
+							{
+								"source": {
+									"name": "Webinar_Date_Ends_on__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 246
+								}
+							},
+							{
+								"source": {
+									"name": "Webinar_Date__c",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 247
+								}
+							},
+							{
+								"source": {
+									"name": "Welcome_Call_Completed__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 248
+								}
+							},
+							{
+								"source": {
+									"name": "Which_Apartment__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 249
+								}
+							},
+							{
+								"source": {
+									"name": "Which_Tower__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 250
+								}
+							},
+							{
+								"source": {
+									"name": "feedback_submitted__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 251
+								}
+							},
+							{
+								"source": {
+									"name": "isOpportunityDetailCreated__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 252
+								}
+							},
+							{
+								"source": {
+									"name": "offer_available__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 253
+								}
+							},
+							{
+								"source": {
+									"name": "offer_payable__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 254
+								}
+							},
+							{
+								"source": {
+									"name": "Collected_Stamp_Duty_Reg_Charges__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 255
+								}
+							},
+							{
+								"source": {
+									"name": "Insatallment__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 256
+								}
+							},
+							{
+								"source": {
+									"name": "Loan_Amount_Disbursed__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 257
+								}
+							},
+							{
+								"source": {
+									"name": "NF_Credit_Receipt_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 258
+								}
+							},
+							{
+								"source": {
+									"name": "OD_interest_Paid__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 259
+								}
+							},
+							{
+								"source": {
+									"name": "Payable_to_customer_on_advance_payment__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 260
+								}
+							},
+							{
+								"source": {
+									"name": "Received__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 261
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Opportunity_amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 262
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Opportunity_amount_del__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 263
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Receipts_del__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 264
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Running_Overdue_Amount1__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 265
+								}
+							},
+							{
+								"source": {
+									"name": "Agreement_Ageing__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 266
+								}
+							},
+							{
+								"source": {
+									"name": "Agreement_value__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 267
+								}
+							},
+							{
+								"source": {
+									"name": "Amount_Due_Cr__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 268
+								}
+							},
+							{
+								"source": {
+									"name": "Amount_Due__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 269
+								}
+							},
+							{
+								"source": {
+									"name": "Apartment_Rate_after_Discount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 270
+								}
+							},
+							{
+								"source": {
+									"name": "Apt_Basic_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 271
+								}
+							},
+							{
+								"source": {
+									"name": "Apt_Formula_Field_2__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 272
+								}
+							},
+							{
+								"source": {
+									"name": "Apt_Formula_Field_3__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 273
+								}
+							},
+							{
+								"source": {
+									"name": "Apt_Formula_Field__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 274
+								}
+							},
+							{
+								"source": {
+									"name": "Basic_Value_for_Brokerage__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 275
+								}
+							},
+							{
+								"source": {
+									"name": "Block__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 276
+								}
+							},
+							{
+								"source": {
+									"name": "Brokerage_Pending__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 277
+								}
+							},
+							{
+								"source": {
+									"name": "Built_Up_Area__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 278
+								}
+							},
+							{
+								"source": {
+									"name": "CRM_Head__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 279
+								}
+							},
+							{
+								"source": {
+									"name": "Car_Park_Rate__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 280
+								}
+							},
+							{
+								"source": {
+									"name": "Company_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 281
+								}
+							},
+							{
+								"source": {
+									"name": "Construction_Cost__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 282
+								}
+							},
+							{
+								"source": {
+									"name": "Conversion_Aging__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 283
+								}
+							},
+							{
+								"source": {
+									"name": "Daily_booking_count__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 284
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_Sqft__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 285
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_in_Amt_for_Approval_Process__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 286
+								}
+							},
+							{
+								"source": {
+									"name": "Discount_in_for_approval_process__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 287
+								}
+							},
+							{
+								"source": {
+									"name": "Facing__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 288
+								}
+							},
+							{
+								"source": {
+									"name": "Flat_No__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 289
+								}
+							},
+							{
+								"source": {
+									"name": "Floor_Number__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 290
+								}
+							},
+							{
+								"source": {
+									"name": "Floor_Rise_Charges_Per_Sqft__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 291
+								}
+							},
+							{
+								"source": {
+									"name": "Floor_Rise_Rate__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 292
+								}
+							},
+							{
+								"source": {
+									"name": "Grand_Total_Cr__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 293
+								}
+							},
+							{
+								"source": {
+									"name": "Key__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 294
+								}
+							},
+							{
+								"source": {
+									"name": "Land_Cost__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 295
+								}
+							},
+							{
+								"source": {
+									"name": "Land_Value_Before_Discount_BLC_FC_PC__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 296
+								}
+							},
+							{
+								"source": {
+									"name": "Net_Unit_Rate__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 297
+								}
+							},
+							{
+								"source": {
+									"name": "Net_effective_Rate__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 298
+								}
+							},
+							{
+								"source": {
+									"name": "Non_Collectable_reason__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 299
+								}
+							},
+							{
+								"source": {
+									"name": "Other_Charges_Payable_on_Registration__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 300
+								}
+							},
+							{
+								"source": {
+									"name": "Outsdg_Ptp_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 301
+								}
+							},
+							{
+								"source": {
+									"name": "Outstanding_After_Credit_Note__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 302
+								}
+							},
+							{
+								"source": {
+									"name": "PremiumR1__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 303
+								}
+							},
+							{
+								"source": {
+									"name": "Premium_Rate_2__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 304
+								}
+							},
+							{
+								"source": {
+									"name": "Premium_Rate_3__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 305
+								}
+							},
+							{
+								"source": {
+									"name": "Premium_Rate__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 306
+								}
+							},
+							{
+								"source": {
+									"name": "Project_Id__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 307
+								}
+							},
+							{
+								"source": {
+									"name": "Project_Name__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 308
+								}
+							},
+							{
+								"source": {
+									"name": "Project__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 309
+								}
+							},
+							{
+								"source": {
+									"name": "Received_Extra__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 310
+								}
+							},
+							{
+								"source": {
+									"name": "Refund_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 311
+								}
+							},
+							{
+								"source": {
+									"name": "SVH_to_Booking__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 312
+								}
+							},
+							{
+								"source": {
+									"name": "Standard_Booking_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 313
+								}
+							},
+							{
+								"source": {
+									"name": "Tertiary_Source__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 314
+								}
+							},
+							{
+								"source": {
+									"name": "Time_to_SVH__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 315
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Discount_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 316
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Received_With_NF_Credit_Amount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 317
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Sale_Consideration_GST__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 318
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Unit_Cost__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 319
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Unit_Cost_after_Discount__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 320
+								}
+							},
+							{
+								"source": {
+									"name": "Unit_No__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 321
+								}
+							},
+							{
+								"source": {
+									"name": "Unit_Sharing__c",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 322
+								}
+							},
+							{
+								"source": {
+									"name": "Unit_Template_Rate__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 323
+								}
+							},
+							{
+								"source": {
+									"name": "offer_balance_to_raise__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 324
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Amount_Due__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 325
+								}
+							},
+							{
+								"source": {
+									"name": "Total_Cum_OD_Interest__c",
+									"type": "Decimal"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 326
+								}
+							},
+							{
+								"source": {
+									"name": "Priority_CP__c",
+									"type": "Boolean"
+								},
+								"sink": {
+									"type": "String",
+									"physicalType": "String",
+									"ordinal": 327
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Opportunity_Prod",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DelimitedText5",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
