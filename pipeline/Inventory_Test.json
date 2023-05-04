@@ -2800,7 +2800,7 @@
 						"referenceName": "SalesforceObject2",
 						"type": "DatasetReference",
 						"parameters": {
-							"Inventory": "Inventory"
+							"Opportunity": "Inventory"
 						}
 					}
 				],

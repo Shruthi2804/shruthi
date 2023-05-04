@@ -1,15 +1,9 @@
 {
-	"name": "SalesforceObject2",
+	"name": "Opportunity",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Salesforce2",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"Opportunity": {
-				"type": "object",
-				"defaultValue": "Opportunity"
-			}
 		},
 		"annotations": [],
 		"type": "SalesforceObject",
