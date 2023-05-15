@@ -4222,6 +4222,37 @@
 				"[concat(variables('factoryId'), '/datasets/LeadData')]",
 				"[concat(variables('factoryId'), '/datasets/LeadSink')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "Lead",
+						"type": "PipelineReference"
+					},
+					"parameters": {}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Hour",
+					"interval": 24,
+					"startTime": "2023-05-15T06:26:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Lead')]"
+			]
 		}
 	]
 }
