@@ -1,0 +1,15 @@
+{
+	"name": "LeadData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Salesforce_Dev_Migration",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "Lead"
+		}
+	}
+}
