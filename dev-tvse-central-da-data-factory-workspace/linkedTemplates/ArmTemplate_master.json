@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage3'"
 		},
+		"AzureDataLakeStorage4_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage4'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -31,6 +35,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'ERPCluster'"
 		},
+		"LeadSink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LeadSink'"
+		},
+		"Opportunity_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Opportunity'"
+		},
+		"SalesForce_Migration_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'SalesForce_Migration'"
+		},
 		"Salesforce1_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Salesforce1'"
@@ -38,6 +54,22 @@
 		"Salesforce1_securityToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'securityToken' of 'Salesforce1'"
+		},
+		"Salesforce2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Salesforce2'"
+		},
+		"Salesforce2_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'Salesforce2'"
+		},
+		"Salesforce_Azure_Prod_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Salesforce_Azure_Prod'"
+		},
+		"Salesforce_Azure_Prod_securityToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'securityToken' of 'Salesforce_Azure_Prod'"
 		},
 		"Salesforce_Dev_Migration_password": {
 			"type": "secureString",
@@ -79,6 +111,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'refreshToken' of 'tvse_google_adwords'"
 		},
+		"Lead_Sink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Lead_Sink'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net"
@@ -91,11 +127,43 @@
 			"type": "string",
 			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage4_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"LeadSink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"Opportunity_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
+		},
+		"SalesForce_Migration_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
 		"Salesforce1_properties_typeProperties_environmentUrl": {
 			"type": "string",
 			"defaultValue": "https://login.salesforce.com"
 		},
 		"Salesforce1_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "deepak.kumar@tvsmotor.com"
+		},
+		"Salesforce2_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "https://login.salesforce.com"
+		},
+		"Salesforce2_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "deepak.kumar@tvsmotor.com"
+		},
+		"Salesforce_Azure_Prod_properties_typeProperties_environmentUrl": {
+			"type": "string",
+			"defaultValue": "https://login.salesforce.com"
+		},
+		"Salesforce_Azure_Prod_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "deepak.kumar@tvsmotor.com"
 		},
@@ -134,6 +202,10 @@
 		"scheduledTrigger_properties_date_test_parameters_scheduledTime": {
 			"type": "string",
 			"defaultValue": "@trigger().scheduledTime"
+		},
+		"Lead_Sink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -174,17 +246,41 @@
 					"AzureDataLakeStorage3_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage3_accountKey')]"
 					},
+					"AzureDataLakeStorage4_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage4_accountKey')]"
+					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
 					"ERPCluster_accessToken": {
 						"value": "[parameters('ERPCluster_accessToken')]"
 					},
+					"LeadSink_accountKey": {
+						"value": "[parameters('LeadSink_accountKey')]"
+					},
+					"Opportunity_accountKey": {
+						"value": "[parameters('Opportunity_accountKey')]"
+					},
+					"SalesForce_Migration_accountKey": {
+						"value": "[parameters('SalesForce_Migration_accountKey')]"
+					},
 					"Salesforce1_password": {
 						"value": "[parameters('Salesforce1_password')]"
 					},
 					"Salesforce1_securityToken": {
 						"value": "[parameters('Salesforce1_securityToken')]"
+					},
+					"Salesforce2_password": {
+						"value": "[parameters('Salesforce2_password')]"
+					},
+					"Salesforce2_securityToken": {
+						"value": "[parameters('Salesforce2_securityToken')]"
+					},
+					"Salesforce_Azure_Prod_password": {
+						"value": "[parameters('Salesforce_Azure_Prod_password')]"
+					},
+					"Salesforce_Azure_Prod_securityToken": {
+						"value": "[parameters('Salesforce_Azure_Prod_securityToken')]"
 					},
 					"Salesforce_Dev_Migration_password": {
 						"value": "[parameters('Salesforce_Dev_Migration_password')]"
@@ -207,15 +303,6 @@
 					"google_adwords_linked_service_refreshToken": {
 						"value": "[parameters('google_adwords_linked_service_refreshToken')]"
 					},
-					"tvse_google_adwords_developerToken": {
-						"value": "[parameters('tvse_google_adwords_developerToken')]"
-					},
-					"tvse_google_adwords_clientSecret": {
-						"value": "[parameters('tvse_google_adwords_clientSecret')]"
-					},
-					"tvse_google_adwords_refreshToken": {
-						"value": "[parameters('tvse_google_adwords_refreshToken')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -225,11 +312,35 @@
 					"AzureDataLakeStorage3_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage3_properties_typeProperties_url')]"
 					},
+					"AzureDataLakeStorage4_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage4_properties_typeProperties_url')]"
+					},
+					"LeadSink_properties_typeProperties_url": {
+						"value": "[parameters('LeadSink_properties_typeProperties_url')]"
+					},
+					"Opportunity_properties_typeProperties_url": {
+						"value": "[parameters('Opportunity_properties_typeProperties_url')]"
+					},
+					"SalesForce_Migration_properties_typeProperties_url": {
+						"value": "[parameters('SalesForce_Migration_properties_typeProperties_url')]"
+					},
 					"Salesforce1_properties_typeProperties_environmentUrl": {
 						"value": "[parameters('Salesforce1_properties_typeProperties_environmentUrl')]"
 					},
 					"Salesforce1_properties_typeProperties_username": {
 						"value": "[parameters('Salesforce1_properties_typeProperties_username')]"
+					},
+					"Salesforce2_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('Salesforce2_properties_typeProperties_environmentUrl')]"
+					},
+					"Salesforce2_properties_typeProperties_username": {
+						"value": "[parameters('Salesforce2_properties_typeProperties_username')]"
+					},
+					"Salesforce_Azure_Prod_properties_typeProperties_environmentUrl": {
+						"value": "[parameters('Salesforce_Azure_Prod_properties_typeProperties_environmentUrl')]"
+					},
+					"Salesforce_Azure_Prod_properties_typeProperties_username": {
+						"value": "[parameters('Salesforce_Azure_Prod_properties_typeProperties_username')]"
 					},
 					"Salesforce_Dev_Migration_properties_typeProperties_environmentUrl": {
 						"value": "[parameters('Salesforce_Dev_Migration_properties_typeProperties_environmentUrl')]"
@@ -248,9 +359,6 @@
 					},
 					"google_adwords_linked_service_properties_typeProperties_clientId": {
 						"value": "[parameters('google_adwords_linked_service_properties_typeProperties_clientId')]"
-					},
-					"tvse_google_adwords_properties_typeProperties_clientId": {
-						"value": "[parameters('tvse_google_adwords_properties_typeProperties_clientId')]"
 					}
 				}
 			},
@@ -270,6 +378,44 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"tvse_google_adwords_developerToken": {
+						"value": "[parameters('tvse_google_adwords_developerToken')]"
+					},
+					"tvse_google_adwords_clientSecret": {
+						"value": "[parameters('tvse_google_adwords_clientSecret')]"
+					},
+					"tvse_google_adwords_refreshToken": {
+						"value": "[parameters('tvse_google_adwords_refreshToken')]"
+					},
+					"Lead_Sink_accountKey": {
+						"value": "[parameters('Lead_Sink_accountKey')]"
+					},
+					"tvse_google_adwords_properties_typeProperties_clientId": {
+						"value": "[parameters('tvse_google_adwords_properties_typeProperties_clientId')]"
+					},
+					"Lead_Sink_properties_typeProperties_url": {
+						"value": "[parameters('Lead_Sink_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'dev-tvse-central-da-data-factory-workspace_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "dev-tvse-central-da-data-factory-workspace_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
 					"scheduledTrigger_properties_date_test_parameters_triggerTime": {
 						"value": "[parameters('scheduledTrigger_properties_date_test_parameters_triggerTime')]"
 					},
@@ -279,7 +425,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'dev-tvse-central-da-data-factory-workspace_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'dev-tvse-central-da-data-factory-workspace_ArmTemplate_1')]"
 			]
 		}
 	]

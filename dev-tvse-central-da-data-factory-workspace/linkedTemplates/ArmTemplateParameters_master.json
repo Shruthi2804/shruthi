@@ -17,16 +17,40 @@
 		"AzureDataLakeStorage3_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorage4_accountKey": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
 		"ERPCluster_accessToken": {
 			"value": ""
 		},
+		"LeadSink_accountKey": {
+			"value": ""
+		},
+		"Opportunity_accountKey": {
+			"value": ""
+		},
+		"SalesForce_Migration_accountKey": {
+			"value": ""
+		},
 		"Salesforce1_password": {
 			"value": ""
 		},
 		"Salesforce1_securityToken": {
+			"value": ""
+		},
+		"Salesforce2_password": {
+			"value": ""
+		},
+		"Salesforce2_securityToken": {
+			"value": ""
+		},
+		"Salesforce_Azure_Prod_password": {
+			"value": ""
+		},
+		"Salesforce_Azure_Prod_securityToken": {
 			"value": ""
 		},
 		"Salesforce_Dev_Migration_password": {
@@ -59,6 +83,9 @@
 		"tvse_google_adwords_refreshToken": {
 			"value": ""
 		},
+		"Lead_Sink_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://prodcentralstorage.dfs.core.windows.net"
 		},
@@ -68,10 +95,34 @@
 		"AzureDataLakeStorage3_properties_typeProperties_url": {
 			"value": "https://devcentalstorage.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage4_properties_typeProperties_url": {
+			"value": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"LeadSink_properties_typeProperties_url": {
+			"value": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"Opportunity_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
+		},
+		"SalesForce_Migration_properties_typeProperties_url": {
+			"value": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
 		"Salesforce1_properties_typeProperties_environmentUrl": {
 			"value": "https://login.salesforce.com"
 		},
 		"Salesforce1_properties_typeProperties_username": {
+			"value": "deepak.kumar@tvsmotor.com"
+		},
+		"Salesforce2_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
+		"Salesforce2_properties_typeProperties_username": {
+			"value": "deepak.kumar@tvsmotor.com"
+		},
+		"Salesforce_Azure_Prod_properties_typeProperties_environmentUrl": {
+			"value": "https://login.salesforce.com"
+		},
+		"Salesforce_Azure_Prod_properties_typeProperties_username": {
 			"value": "deepak.kumar@tvsmotor.com"
 		},
 		"Salesforce_Dev_Migration_properties_typeProperties_environmentUrl": {
@@ -100,6 +151,9 @@
 		},
 		"scheduledTrigger_properties_date_test_parameters_scheduledTime": {
 			"value": "@trigger().scheduledTime"
+		},
+		"Lead_Sink_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""
