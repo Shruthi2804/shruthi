@@ -1,0 +1,15 @@
+{
+	"name": "Leads",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Salesforce_Azure_Prod",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "Lead"
+		}
+	}
+}
