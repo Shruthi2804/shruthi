@@ -1,0 +1,15 @@
+{
+	"name": "opportunity_Sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Salesforce_Dev_Migration",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "Opportunity"
+		}
+	}
+}
