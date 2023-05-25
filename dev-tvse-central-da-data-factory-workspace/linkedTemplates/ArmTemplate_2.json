@@ -5233,6 +5233,46 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/google_ads_queries_ds')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Opporutunity_Sales')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "DailyTrigger",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Opportunity_Sales",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-05-25T09:24:00Z",
+						"endTime": "2023-05-26T09:24:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								1
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Opportunity_Sales')]"
+			]
 		}
 	]
 }
