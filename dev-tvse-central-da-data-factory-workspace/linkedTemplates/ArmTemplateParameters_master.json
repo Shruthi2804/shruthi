@@ -20,6 +20,9 @@
 		"AzureDataLakeStorage4_accountKey": {
 			"value": ""
 		},
+		"AzureDataLakeStorage5_accountKey": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
@@ -27,6 +30,9 @@
 			"value": ""
 		},
 		"LeadSink_accountKey": {
+			"value": ""
+		},
+		"Lead_Sink_accountKey": {
 			"value": ""
 		},
 		"Opportunity_accountKey": {
@@ -83,9 +89,6 @@
 		"tvse_google_adwords_refreshToken": {
 			"value": ""
 		},
-		"Lead_Sink_accountKey": {
-			"value": ""
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://prodcentralstorage.dfs.core.windows.net"
 		},
@@ -98,14 +101,20 @@
 		"AzureDataLakeStorage4_properties_typeProperties_url": {
 			"value": "https://prodcentralstorage.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage5_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
+		},
 		"LeadSink_properties_typeProperties_url": {
 			"value": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"Lead_Sink_properties_typeProperties_url": {
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"Opportunity_properties_typeProperties_url": {
 			"value": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"SalesForce_Migration_properties_typeProperties_url": {
-			"value": "https://prodcentralstorage.dfs.core.windows.net/"
+			"value": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"Salesforce1_properties_typeProperties_environmentUrl": {
 			"value": "https://login.salesforce.com"
@@ -151,9 +160,6 @@
 		},
 		"scheduledTrigger_properties_date_test_parameters_scheduledTime": {
 			"value": "@trigger().scheduledTime"
-		},
-		"Lead_Sink_properties_typeProperties_url": {
-			"value": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

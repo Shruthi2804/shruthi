@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage4'"
 		},
+		"AzureDataLakeStorage5_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage5'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -38,6 +42,10 @@
 		"LeadSink_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LeadSink'"
+		},
+		"Lead_Sink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Lead_Sink'"
 		},
 		"Opportunity_accountKey": {
 			"type": "secureString",
@@ -87,18 +95,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'securityToken' of 'Salesforce_Sample'"
 		},
-		"google_adwords_linked_service_developerToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'developerToken' of 'google_adwords_linked_service'"
-		},
-		"google_adwords_linked_service_clientSecret": {
-			"type": "secureString",
-			"metadata": "Secure string for 'clientSecret' of 'google_adwords_linked_service'"
-		},
-		"google_adwords_linked_service_refreshToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'refreshToken' of 'google_adwords_linked_service'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net"
@@ -115,9 +111,17 @@
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage5_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
+		},
 		"LeadSink_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"Lead_Sink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"Opportunity_properties_typeProperties_url": {
 			"type": "string",
@@ -125,7 +129,7 @@
 		},
 		"SalesForce_Migration_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"Salesforce1_properties_typeProperties_environmentUrl": {
 			"type": "string",
@@ -166,14 +170,6 @@
 		"Salesforce_Sample_properties_typeProperties_username": {
 			"type": "string",
 			"defaultValue": "deepak.kumar@tvsmotor.com"
-		},
-		"adls_linked_service_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://devcentalstorage.dfs.core.windows.net"
-		},
-		"google_adwords_linked_service_properties_typeProperties_clientId": {
-			"type": "string",
-			"defaultValue": "760443842250-qi75f4pjn0tdmob74f9iu4pv4u035rcm.apps.googleusercontent.com"
 		}
 	},
 	"variables": {
@@ -441,6 +437,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage5')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage5_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage5_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -490,6 +503,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LeadSink_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Sink')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Lead_Sink_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Lead_Sink_accountKey')]"
 					}
 				}
 			},
@@ -640,46 +670,6 @@
 						"value": "[parameters('Salesforce_Sample_securityToken')]"
 					},
 					"apiVersion": "56.0"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/adls_linked_service')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('adls_linked_service_properties_typeProperties_url')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/google_adwords_linked_service')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "GoogleAdWords",
-				"typeProperties": {
-					"clientCustomerID": "8979592337",
-					"developerToken": {
-						"type": "SecureString",
-						"value": "[parameters('google_adwords_linked_service_developerToken')]"
-					},
-					"authenticationType": "UserAuthentication",
-					"clientId": "[parameters('google_adwords_linked_service_properties_typeProperties_clientId')]",
-					"clientSecret": {
-						"type": "SecureString",
-						"value": "[parameters('google_adwords_linked_service_clientSecret')]"
-					},
-					"refreshToken": {
-						"type": "SecureString",
-						"value": "[parameters('google_adwords_linked_service_refreshToken')]"
-					}
 				}
 			},
 			"dependsOn": []

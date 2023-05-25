@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage4'"
 		},
+		"AzureDataLakeStorage5_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage5'"
+		},
 		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
@@ -38,6 +42,10 @@
 		"LeadSink_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LeadSink'"
+		},
+		"Lead_Sink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Lead_Sink'"
 		},
 		"Opportunity_accountKey": {
 			"type": "secureString",
@@ -111,10 +119,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'refreshToken' of 'tvse_google_adwords'"
 		},
-		"Lead_Sink_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'Lead_Sink'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net"
@@ -131,9 +135,17 @@
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage5_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
+		},
 		"LeadSink_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+		},
+		"Lead_Sink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"Opportunity_properties_typeProperties_url": {
 			"type": "string",
@@ -141,7 +153,7 @@
 		},
 		"SalesForce_Migration_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://prodcentralstorage.dfs.core.windows.net/"
+			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		},
 		"Salesforce1_properties_typeProperties_environmentUrl": {
 			"type": "string",
@@ -202,16 +214,160 @@
 		"scheduledTrigger_properties_date_test_parameters_scheduledTime": {
 			"type": "string",
 			"defaultValue": "@trigger().scheduledTime"
-		},
-		"Lead_Sink_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://devcentalstorage.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Inventory_Prod')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SalesforceSource",
+								"readBehavior": {
+									"value": "select * from inventory",
+									"type": "Expression"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Inventory_Prod",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Inventory_sink",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Inventory_Prod')]",
+				"[concat(variables('factoryId'), '/datasets/Inventory_sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Prod')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SalesforceSource",
+								"readBehavior": {
+									"value": "select * from Lead",
+									"type": "Expression"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Lead_Prod",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "LeadProd",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Lead_Prod')]",
+				"[concat(variables('factoryId'), '/datasets/LeadProd')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Opportunity_Prod')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -3867,7 +4023,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "DelimitedText5",
+								"referenceName": "oppr_sales",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -3882,7 +4038,81 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Opportunity_Prod')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText5')]"
+				"[concat(variables('factoryId'), '/datasets/oppr_sales')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Opportunity_Sales')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SalesforceSource",
+								"readBehavior": {
+									"value": "SELECT AccountId,Activity_Count__c,Admin_Remarks__c,Age_Last_Modified__c,Agreement_Ageing__c,Agreement_Amount_Received_Date__c,Agreement_Execution_Date__c,Agreement_Signed_Date__c,Agreement_value__c,Allotment_Date__c,Amount,Amount_Due_Cr__c,Amount_Due__c,Apartment_Rate_after_Discount__c,Apartment__c,Application_Form__c,Approval_from_CRM__c,Approval_Status__c,Apt_Basic_Amount__c,Apt_Formula_Field_2__c,Apt_Formula_Field_3__c,Apt_Formula_Field_4__c,Apt_Formula_Field_5__c,Apt_Formula_Field__c,Attention__c,Auto_Cancellation__c,Balance_Amount_to_be_Disbursed__c,Bank_Location__c,Basement_1__c,Basement_2__c,Basement_3__c,Basic_Rate_after_Discount__c,Basic_Value_for_Brokerage__c,BKG_DT__c,Blocking_Approval_Status__c,Blocking_Extension_Approval_Status__c,Blocking_intimation_by__c,Blocking_Type__c,Block__c,Booked__c,Booking_Amount_Receipt_Date__c,Booking_Amount__c,Booking_Cheque_Date__c,Booking_Date_for_Report__c,Booking_Reference_Number__c,Branch_Name__c,Brokerage_Payable__c,Brokerage_Pending__c,Brokerage_percentage__c,Budget_Confirmed__c,Budget__c,Built_Up_Area__c,Caller_Remarks__c,Calling_Date__c,Call_Connected__c,Call_Count__c,Call_Summary__c,CampaignId,Cancellation_Date__c,Cancel_Count__c,Cancel__c,CarPark_Numbers__c,Car_Park_Allotment_Letter_Date__c,Car_Park_Rate__c,Car_Par_Allotment_Letter__c,Client_Expectation__c,CloseDate,Collected_Stamp_Duty_Reg_Charges__c,Collection_Callerr__c,Collection_Caller__c,Collection_Status__c,Company_Name__c,Company__c,Component_Master__c,Construction_Agreement_Date__c,Construction_Cost__c,ContactId,Contact__c,ContractId,Conversion_Aging__c,CP_Contact_User__c,CP_Pan_No__c,CreatedById,CreatedDate,CRM_Approval_Status__c,CRM_Head__c,CSTMP__c,Customer_Count__c,Daily_booking_count__c,Data_Entry__c,Days_Remaining_for_Unblocking__c,Deal_Stage__c,Description,DIGILOCKER_FILE_ID__c,DIGILOCKER_REQUEST_STATUS__c,Digio_Document_Name__c,DIGIO_ESIGN_STATUS__c,Digio_E_Sign_ID__c,Digio_KID__c,Discount_Amount_Total__c,Discount_Approval__c,Discount_B__c,Discount_C__c,Discount_D__c,Discount_in_Amt_for_Approval_Process__c,Discount_in_for_approval_process__c,Discount_Remarks__c,Discount_Sqft__c,Discount_Type__c,Discovery_Completed__c,Disqualified_Date__c,Downgrade_Date__c,Dropped_opportunity_date__c,Dropped_Opportunity_Reason__c,Email_Count__c,Email__c,ENQUIRY_FORM__c,Enquiry_Ref_No__c,Extension_Requested__c,Facing__c,feedback_submitted__c,Final_Payment_Pending_If_Any__c,Finance_NOC_Date__c,Fiscal,FiscalQuarter,FiscalYear,Flat_No__c,Floor_Number__c,Floor_Rise_Charges_Per_Sqft__c,Floor_Rise_Rate__c,Follow_up_date__c,ForecastCategory,ForecastCategoryName,GCLID__c,Generate_Payment_Schedule__c,Get_E_Sign_Document__c,Grand_Total_Cr__c,GST_as_Applicable__c,HasOpenActivity,HasOpportunityLineItem,HasOverdueTask,HQ_Engagement__c,HQ_Meeting_Date__c,HQ_Meeting_Remarks__c,Id,Identity_Proof__c,Inclusive_Amt_Total__c,Insatallment__c,IsClosed,IsCommissionAvailable__c,IsDeleted,isOpportunityDetailCreated__c,IsWon,Keys_List_Verified__c,KEY_PLAN_FLOOR_PLAN__c,Key__c,Land_Cost__c,Land_Value_Before_Discount_BLC_FC_PC__c,LastActivityDate,LastAmountChangedHistoryId,LastCloseDateChangedHistoryId,LastModifiedById,LastModifiedDate,LastReferencedDate,LastStageChangeDate,LastViewedDate,LeadSource,Lead_Created_Date_Time__c,Lead_Created_Time__c,Lead_Status__c,Legacy_Remark__c,Likely_Closure_Date__c,Loan_Account_Number__c,Loan_Amount_Disbursed__c,Loan_Sanction_Amount__c,Loan_with__c,Loss_Reason__c,Maintenance_Agreement_Signed__c,Make_Apt_Car_NULL__c,Manager1_Email__c,Manager_Email__c,Meeting_Count__c,Minimum_Booking_Amount_Received__c,Miscellaneous_Charges__c,Mobile__c,Name,Negotiated__c,Net_effective_Rate__c,Net_Realization__c,Net_Unit_Rate__c,NextStep,Next_St__c,NF_Credit_Receipt_Amount__c,NOC_from_Finance__c,Non_Collectable_reason__c,Note_Count__c,Number_of_Carpark__c,OD_interest_Paid__c,Offer_Amount__c,offer_available__c,offer_balance_to_raise__c,offer_payable__c,Offer__c,OpportunityDetail__c,Opportunity_Name__c,Opportunity_Total__c,Opportunity_Upload_Remarks__c,Opportuntiy_Number__c,Opp_Created_Date__c,Opp_Protection_expires_at__c,Other_Charges_Payable_on_Registration__c,Other_Charges_Report__c,Other_charges_with_taxes__c,Other_charges_w_o_taxes__c,Other_Deductions__c,Outsdg_Ptp_Amount__c,Outstanding_After_Credit_Note__c,Overall_Brokerage_Amount__c,Over_Due_Interest_waived__c,OwnerId,Owner_Manager_Email__c,Owner_Manager__c,Owner_Name__c,Owner_Role_Name__c,Payable_to_customer_on_advance_payment__c,Payment_Schedule__c,PB_NO__c,Photographs__c,Physical_booking_file_received__c,Pipeline_Value_Cr__c,Place_of_Agreement__c,Possession_Letter_Date__c,Possession_Letter__c,PremiumR1__c,Premium_Rate_2__c,Premium_Rate_3__c,Premium_Rate__c,Pricebook2Id,Priority_CP__c,Probability,Project_Id__c,Project_Interested__c,Project_Name__c,Project_Referred_to__c,Project__c,Propose_discount_Amt_Sft__c,PTP_Amount__c,PTP_Date__c,PushCount,Quotation_Count__c,Rating__c,REAR_No__c,Reason__c,Received_Extra__c,Received__c,Recived_Amount_Cleared__c,Referred_By_Customer_Mobile__c,Referred_By_Employee_Mobile__c,Referred_Employee__c,Referred_Opportunity__c,Refunded_to_Customer__c,Refund_Amount__c,Registration_Date__c,Registration_No__c,Remarks__c,Request_for__c,Rera_Project_Name__c,Revisit_Initiated__c,ROI_Analysis_Completed__c,Salesperson_1__c,Salesperson_2__c,Sales_Consideration_with_taxes__c,Sales_Consideration_w_o_taxes__c,Sale_Deed_Date__c,Sale_Deed_Number__c,Scheme__c,Secondary_Email__c,Secondary_Mobile__c,Secondary_Source__c,Second_Prefered_Unit__c,Send_DigiLocker__c,Send_Digio_E_Sign__c,Signed_Documents_Application_Form_Enquir__c,Site_Visit_Lost_Reason__c,Site_Visit_Source__c,Snag_List_Cleared__c,Specification__c,StageName,Stamp_Duty_Registration_Charges__c,Standard_Booking_Amount__c,Subsequent_Meeting_Remarks__c,Subsequent_Meeting_Time__c,Subs_Site_Visit_Virtual__c,Suggested_Action_by_Management__c,SVH_to_Booking__c,SystemModstamp,Template_Master__c,Term_Master__c,Tertiary_Source__c,Time_of_Visit_lead__c,Time_to_SVH__c,Token_Created_Date__c,Token_Name__c,Total_Amount_Due__c,Total_Cum_OD_Interest__c,Total_Discount_Amount__c,Total_Installment_Balance__c,Total_Opportunity_amount_del__c,Total_Opportunity_amount__c,Total_Receipts_del__c,Total_Received_With_NF_Credit_Amount__c,Total_Received__c,Total_Running_Overdue_Amount1__c,Total_Sale_Consideration_GST__c,Total_Sale_Consideration__c,Total_Unit_Cost_after_Discount__c,Total_Unit_Cost__c,TrackingNumber__c,Trf_reassign_canc_Date__c,Type,Unblocking_date_and_time__c,Unit_No__c,Unit_Sharing__c,Unit_Template_Rate__c,Unqualified_Reason__c,Unqualified__c,Update_Tax__c,Values__c,Webinar_Date_Ends_on__c,Webinar_Date__c,Welcome_Call_Completed__c,Which_Apartment__c,Which_Tower__c FROM Opportunity\nwhere StageName='1.Site Tour Completed' OR StageName='2.Blocking' OR StageName='3.Final Price Approval'\nOR StageName='4.Booking Initiated'\n",
+									"type": "Expression"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "opportunity_Sales",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "oppr_sales",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/opportunity_Sales')]",
+				"[concat(variables('factoryId'), '/datasets/oppr_sales')]"
 			]
 		},
 		{
@@ -4824,12 +5054,399 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"name": "[concat(parameters('factoryName'), '/ERPcustomer')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage3",
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SALES_ACCOUNT_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CUSTOMER_ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Title",
+						"type": "nvarchar"
+					},
+					{
+						"name": "First_Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Last_Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Gender",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Date_of_Birth",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Relationship",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Realative_name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Anniversary",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Company",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Designation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Occupation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residing_Nation",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Nationality",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Aadhar_No",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Category",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "PAN_ID",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Passport_No",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Followup_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Interested_in_Project",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Interested_in_Sub_Project",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Interested_in_Unit_Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Lead_Type",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Enquiry_Source",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Sub_Enquiry_Source",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Assign_To",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Reference",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Created_By",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Lead_Created_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Closure_Target_Date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Date_of_Creation",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Residence_Street",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_Country",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_PIN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_Phone1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_Phone2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_Mobile1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Residence_Mobile2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_Street",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_Country",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_City",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_PIN",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_Phone1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_Phone2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_Mobile1",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Permanent_Mobile2",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking_type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Unit_No",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Unit_Type",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking_date",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Booking_through",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Finance",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Payment_plan",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Co_applicant_name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Co_Realationship",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Co_Nationality",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Co_Applicant_Aadhar_no",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Co_Applicant_PAN_no",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Agreement_date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Registration_date",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "Counter_discount_amount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Broker_discount_amount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Total_Discount_Amount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Total_agreement_value",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Net_charges_payable",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Net_taxes_payable",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "Net_Payable",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "CREATED_DATE",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "LEAD_AND_BOOKING"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GoogleAdWordsObject1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "google_adwords_linked_service",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "GoogleAdWordsObject",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/google_adwords_linked_service')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Inventory_Prod')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Azure_Prod",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Apartment__c"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Azure_Prod')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Inventory_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SalesForce_Migration",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -4837,7 +5454,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"folderPath": "lake",
 						"fileSystem": "tvse"
 					},
 					"columnDelimiter": ",",
@@ -5598,16 +6214,16 @@
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage3')]"
+				"[concat(variables('factoryId'), '/linkedServices/SalesForce_Migration')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText4')]",
+			"name": "[concat(parameters('factoryName'), '/Lead')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage3",
+					"referenceName": "AzureDataLakeStorage1",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -5615,7 +6231,53 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"folderPath": "lake",
+						"folderPath": "lake/Salesforce_Azure",
+						"fileSystem": "tvse"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LeadData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Dev_Migration",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Lead"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Dev_Migration')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LeadProd')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SalesForce_Migration",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
 						"fileSystem": "tvse"
 					},
 					"columnDelimiter": ",",
@@ -6376,11 +7038,1088 @@
 				]
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SalesForce_Migration')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LeadSink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Lead_Sink",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "lake/Salesforce_Migration",
+						"fileSystem": "tvse"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Lead_Sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Prod')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Azure_Prod",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Lead"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Azure_Prod')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SalesForce_Migration",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "tvse"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SalesForce_Migration')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Leads')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Azure_Prod",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Lead"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Azure_Prod')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Opportunity')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Opportunity"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/OpportunityTester')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage3')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText5')]",
+			"name": "[concat(parameters('factoryName'), '/Opportunity_Prod')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Azure_Prod",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Opportunity"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Azure_Prod')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "lake/Salesforce_Migration",
+						"fileSystem": "tvse"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/delete_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_linked_service",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "ab-testing1.jpg",
+						"folderPath": "data_factory",
+						"fileSystem": "tvse"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adls_linked_service')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/google_ads')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_linked_service",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "temp1.json",
+						"folderPath": "google-ads",
+						"fileSystem": "tvse"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adls_linked_service')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/google_ads_queries_ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "adls_linked_service",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "ads-queries.json",
+						"folderPath": "google-ads/ads-meta-data",
+						"fileSystem": "tvse"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"ads-account": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"queries": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"query": {
+										"type": "string"
+									},
+									"id": {
+										"type": "integer"
+									},
+									"name": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/adls_linked_service')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/inventory')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Dev_Migration",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Apartment__c"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Dev_Migration')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/opportunity_Sales')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Salesforce_Dev_Migration",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SalesforceObject",
+				"schema": [],
+				"typeProperties": {
+					"objectApiName": "Opportunity"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Dev_Migration')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/oppr_sales')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -7150,878 +8889,11 @@
 					},
 					{
 						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
 					}
 				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SalesForce_Migration')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ERPcustomer')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SALES_ACCOUNT_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CUSTOMER_ID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Title",
-						"type": "nvarchar"
-					},
-					{
-						"name": "First_Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Last_Name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Gender",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Date_of_Birth",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Relationship",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Realative_name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Anniversary",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Company",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Designation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Occupation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residing_Nation",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Nationality",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Aadhar_No",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Type",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PAN_ID",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Passport_No",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Followup_Date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Interested_in_Project",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Interested_in_Sub_Project",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Interested_in_Unit_Type",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Lead_Type",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Enquiry_Source",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Sub_Enquiry_Source",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Assign_To",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Reference",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Created_By",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Lead_Created_Date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Closure_Target_Date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Date_of_Creation",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Residence_Street",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_Country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_City",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_PIN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_Phone1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_Phone2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_Mobile1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Residence_Mobile2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_Street",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_Country",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_City",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_PIN",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_Phone1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_Phone2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_Mobile1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Permanent_Mobile2",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Booking_type",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Unit_No",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Unit_Type",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Booking_date",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Booking_through",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Finance",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Payment_plan",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Co_applicant_name",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Co_Realationship",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Co_Nationality",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Co_Applicant_Aadhar_no",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Co_Applicant_PAN_no",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Agreement_date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Registration_date",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "Counter_discount_amount",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Broker_discount_amount",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Total_Discount_Amount",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Total_agreement_value",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Net_charges_payable",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Net_taxes_payable",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "Net_Payable",
-						"type": "money",
-						"precision": 19,
-						"scale": 4
-					},
-					{
-						"name": "CREATED_DATE",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "LEAD_AND_BOOKING"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GoogleAdWordsObject1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "google_adwords_linked_service",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "GoogleAdWordsObject",
-				"schema": [],
-				"typeProperties": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/google_adwords_linked_service')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Lead')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "lake/Salesforce_Azure",
-						"fileSystem": "tvse"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Opportunity')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Salesforce2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {
-					"objectApiName": "Opportunity"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Salesforce2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/OpportunityTester')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage3",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage3')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Opportunity_Prod')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Salesforce_Azure_Prod",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {
-					"objectApiName": "Opportunity"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Azure_Prod')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SalesforceObject1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Salesforce_Sample",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Sample')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SalesforceObject2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Salesforce2",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"Opportunity": {
-						"type": "object",
-						"defaultValue": "Opportunity"
-					}
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {
-					"objectApiName": "Opportunity"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Salesforce2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage2",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "lake/Salesforce_Migration",
-						"fileSystem": "tvse"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/delete_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_linked_service",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "ab-testing1.jpg",
-						"folderPath": "data_factory",
-						"fileSystem": "tvse"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_linked_service')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/google_ads')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_linked_service",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "temp1.json",
-						"folderPath": "google-ads",
-						"fileSystem": "tvse"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_linked_service')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/google_ads_queries_ds')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "adls_linked_service",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "ads-queries.json",
-						"folderPath": "google-ads/ads-meta-data",
-						"fileSystem": "tvse"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"ads-account": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						},
-						"queries": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"query": {
-										"type": "string"
-									},
-									"id": {
-										"type": "integer"
-									},
-									"name": {
-										"type": "string"
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adls_linked_service')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/inventory')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Salesforce_Dev_Migration",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {
-					"objectApiName": "Apartment__c"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Dev_Migration')]"
 			]
 		},
 		{
@@ -8106,6 +8978,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage5')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage5_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage5_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -8155,6 +9044,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LeadSink_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Sink')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('Lead_Sink_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('Lead_Sink_accountKey')]"
 					}
 				}
 			},
@@ -8377,6 +9283,28 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Lead_Trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Hour",
+					"interval": 24,
+					"startTime": "2023-05-15T06:26:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/scheduledTrigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -8416,175 +9344,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/date_test')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Lead')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SalesforceSource",
-								"readBehavior": {
-									"value": "select * from Lead",
-									"type": "Expression"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "LeadData",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "LeadSink",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/LeadData')]",
-				"[concat(variables('factoryId'), '/datasets/LeadSink')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LeadData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Salesforce_Dev_Migration",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SalesforceObject",
-				"schema": [],
-				"typeProperties": {
-					"objectApiName": "Lead"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Salesforce_Dev_Migration')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Lead_Sink')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('Lead_Sink_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('Lead_Sink_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LeadSink')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Lead_Sink",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "lake/Salesforce_Migration",
-						"fileSystem": "tvse"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Lead_Sink')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Lead_Trigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipeline": {
-					"pipelineReference": {
-						"referenceName": "Lead",
-						"type": "PipelineReference"
-					},
-					"parameters": {}
-				},
-				"type": "TumblingWindowTrigger",
-				"typeProperties": {
-					"frequency": "Hour",
-					"interval": 24,
-					"startTime": "2023-05-15T06:26:00Z",
-					"delay": "00:00:00",
-					"maxConcurrency": 50,
-					"retryPolicy": {
-						"intervalInSeconds": 30
-					},
-					"dependsOn": []
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Lead')]"
 			]
 		}
 	]
