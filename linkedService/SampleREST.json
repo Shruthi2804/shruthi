@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://tvsemerald.lightning.force.com/lightning/r/Report/00O5i000006SL0IEAW/view",
+			"url": "https://tvsemerald.my.salesforce.com/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
