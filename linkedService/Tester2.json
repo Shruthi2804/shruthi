@@ -1,0 +1,12 @@
+{
+	"name": "Tester2",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://tvsemerald.lightning.force.com/lightning/r/Report/00O5i000006SL0IEAW",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
