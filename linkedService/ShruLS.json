@@ -1,0 +1,12 @@
+{
+	"name": "ShruLS",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://tvsemerald.lightning.force.com/lightning/r/Report/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
