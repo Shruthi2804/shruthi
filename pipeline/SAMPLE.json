@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/prod_tvse"
+					"notebookPath": ""
 				},
 				"linkedServiceName": {
 					"referenceName": "SampleLS",
