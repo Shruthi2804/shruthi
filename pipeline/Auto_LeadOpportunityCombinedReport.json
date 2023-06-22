@@ -1,0 +1,28 @@
+{
+	"name": "Auto_LeadOpportunityCombinedReport",
+	"properties": {
+		"activities": [
+			{
+				"name": "Auto_LeadOpportunityCombinedReport",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/prod_tvse/Migration/SFDC_Lead_Opportunity(Combined)"
+				},
+				"linkedServiceName": {
+					"referenceName": "SampleLS",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
