@@ -27,7 +27,7 @@
 				"frequency": "Day",
 				"interval": 1,
 				"startTime": "2020-09-01T06:08:00",
-				"endTime": "2020-09-30T06:08:00",
+				"endTime": "2023-12-30T06:08:00",
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
