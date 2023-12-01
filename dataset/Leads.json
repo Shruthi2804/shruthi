@@ -2,7 +2,7 @@
 	"name": "Leads",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Salesforce_Azure_Prod",
+			"referenceName": "leadsonly",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
