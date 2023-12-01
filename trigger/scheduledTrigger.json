@@ -13,12 +13,6 @@
 					"triggerTime": "@trigger().startTime",
 					"scheduledTime": "@trigger().scheduledTime"
 				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "Auto_LeadOpportunityCombinedReport",
-					"type": "PipelineReference"
-				}
 			}
 		],
 		"type": "ScheduleTrigger",
