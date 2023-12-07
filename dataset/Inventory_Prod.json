@@ -1,10 +1,6 @@
 {
 	"name": "Inventory_Prod",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Salesforce_Azure_Prod",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "SalesforceObject",
 		"schema": [],

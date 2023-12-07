@@ -1,10 +1,6 @@
 {
 	"name": "Lead_Opp_combined",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "Salesforce_Azure_Prod",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "SalesforceObject",
 		"schema": []

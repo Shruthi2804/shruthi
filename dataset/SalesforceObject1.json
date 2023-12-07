@@ -1,6 +1,10 @@
 {
-	"name": "Lead_Prod",
+	"name": "SalesforceObject1",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sfdc_leads",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "SalesforceObject",
 		"schema": [],
