@@ -1,10 +1,6 @@
 {
 	"name": "Leads",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "leadsonly",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "SalesforceObject",
 		"schema": [],
