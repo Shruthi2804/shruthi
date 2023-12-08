@@ -25,7 +25,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -33,25 +33,11 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
+					"enableStaging": false
 				},
-				"inputs": [
-					{
-						"referenceName": "opportunity_Sales",
-						"type": "DatasetReference"
-					}
-				],
 				"outputs": [
 					{
-						"referenceName": "oppr_sales",
+						"referenceName": "DelimitedText2",
 						"type": "DatasetReference"
 					}
 				]

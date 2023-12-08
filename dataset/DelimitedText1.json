@@ -1,0 +1,1024 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "lake",
+				"container": "tvse"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "a025i00000D4oBMAAZ",
+				"type": "String"
+			},
+			{
+				"name": "False1",
+				"type": "String"
+			},
+			{
+				"name": "EmeraldAtriumGreenAcres/A22",
+				"type": "String"
+			},
+			{
+				"name": "2022-12-28 19:01:55.0000000",
+				"type": "String"
+			},
+			{
+				"name": "0055i000005FNTEAA44",
+				"type": "String"
+			},
+			{
+				"name": "2023-05-03 04:39:08.00000005",
+				"type": "String"
+			},
+			{
+				"name": "0055i000005FNTEAA46",
+				"type": "String"
+			},
+			{
+				"name": "2023-05-03 04:39:08.00000007",
+				"type": "String"
+			},
+			{
+				"name": "Prop_8",
+				"type": "String"
+			},
+			{
+				"name": "Prop_9",
+				"type": "String"
+			},
+			{
+				"name": "Prop_10",
+				"type": "String"
+			},
+			{
+				"name": "a045i00000Ag5nDAAR",
+				"type": "String"
+			},
+			{
+				"name": "Prop_12",
+				"type": "String"
+			},
+			{
+				"name": "57500000637814",
+				"type": "String"
+			},
+			{
+				"name": "RERA Account",
+				"type": "String"
+			},
+			{
+				"name": "Prop_15",
+				"type": "String"
+			},
+			{
+				"name": "Prop_16",
+				"type": "String"
+			},
+			{
+				"name": "Prop_17",
+				"type": "String"
+			},
+			{
+				"name": "Prop_18",
+				"type": "String"
+			},
+			{
+				"name": "Prop_19",
+				"type": "String"
+			},
+			{
+				"name": "1759.00",
+				"type": "String"
+			},
+			{
+				"name": "a0g5i000003iKwPAAU",
+				"type": "String"
+			},
+			{
+				"name": "Blocked",
+				"type": "String"
+			},
+			{
+				"name": "Grand-2BHK",
+				"type": "String"
+			},
+			{
+				"name": "2BHK2T",
+				"type": "String"
+			},
+			{
+				"name": "025",
+				"type": "String"
+			},
+			{
+				"name": "026",
+				"type": "String"
+			},
+			{
+				"name": "027",
+				"type": "String"
+			},
+			{
+				"name": "028",
+				"type": "String"
+			},
+			{
+				"name": "029",
+				"type": "String"
+			},
+			{
+				"name": "False30",
+				"type": "String"
+			},
+			{
+				"name": "Prop_31",
+				"type": "String"
+			},
+			{
+				"name": "HDFC Bank",
+				"type": "String"
+			},
+			{
+				"name": "R. K. Salai, Mylapore33",
+				"type": "String"
+			},
+			{
+				"name": "954.0034",
+				"type": "String"
+			},
+			{
+				"name": "Prop_35",
+				"type": "String"
+			},
+			{
+				"name": "Prop_36",
+				"type": "String"
+			},
+			{
+				"name": "Prop_37",
+				"type": "String"
+			},
+			{
+				"name": "038",
+				"type": "String"
+			},
+			{
+				"name": "Prop_39",
+				"type": "String"
+			},
+			{
+				"name": "Prop_40",
+				"type": "String"
+			},
+			{
+				"name": "a0C5i000008Hm74EAC",
+				"type": "String"
+			},
+			{
+				"name": "Prop_42",
+				"type": "String"
+			},
+			{
+				"name": "043",
+				"type": "String"
+			},
+			{
+				"name": "Prop_44",
+				"type": "String"
+			},
+			{
+				"name": "Prop_45",
+				"type": "String"
+			},
+			{
+				"name": "046",
+				"type": "String"
+			},
+			{
+				"name": "Land Rate",
+				"type": "String"
+			},
+			{
+				"name": "Prop_48",
+				"type": "String"
+			},
+			{
+				"name": "Prop_49",
+				"type": "String"
+			},
+			{
+				"name": "Prop_50",
+				"type": "String"
+			},
+			{
+				"name": "Prop_51",
+				"type": "String"
+			},
+			{
+				"name": "Prop_52",
+				"type": "String"
+			},
+			{
+				"name": "DC Bare Shell",
+				"type": "String"
+			},
+			{
+				"name": "West",
+				"type": "String"
+			},
+			{
+				"name": "Prop_55",
+				"type": "String"
+			},
+			{
+				"name": "Prop_56",
+				"type": "String"
+			},
+			{
+				"name": "Prop_57",
+				"type": "String"
+			},
+			{
+				"name": "Prop_58",
+				"type": "String"
+			},
+			{
+				"name": "259",
+				"type": "String"
+			},
+			{
+				"name": "Prop_60",
+				"type": "String"
+			},
+			{
+				"name": "061",
+				"type": "String"
+			},
+			{
+				"name": "Prop_62",
+				"type": "String"
+			},
+			{
+				"name": "2022-12-29 00:00:00.0000000",
+				"type": "String"
+			},
+			{
+				"name": "064",
+				"type": "String"
+			},
+			{
+				"name": "Prop_65",
+				"type": "String"
+			},
+			{
+				"name": "False66",
+				"type": "String"
+			},
+			{
+				"name": "Prop_67",
+				"type": "String"
+			},
+			{
+				"name": "Prop_68",
+				"type": "String"
+			},
+			{
+				"name": "HDFC0001097",
+				"type": "String"
+			},
+			{
+				"name": "Inv AGA 010",
+				"type": "String"
+			},
+			{
+				"name": "False71",
+				"type": "String"
+			},
+			{
+				"name": "False72",
+				"type": "String"
+			},
+			{
+				"name": "False73",
+				"type": "String"
+			},
+			{
+				"name": "False74",
+				"type": "String"
+			},
+			{
+				"name": "False75",
+				"type": "String"
+			},
+			{
+				"name": "False76",
+				"type": "String"
+			},
+			{
+				"name": "Prop_77",
+				"type": "String"
+			},
+			{
+				"name": "Prop_78",
+				"type": "String"
+			},
+			{
+				"name": "Prop_79",
+				"type": "String"
+			},
+			{
+				"name": "a0g5i000003iMCYAA2",
+				"type": "String"
+			},
+			{
+				"name": "4250.00",
+				"type": "String"
+			},
+			{
+				"name": "Prop_82",
+				"type": "String"
+			},
+			{
+				"name": "Prop_83",
+				"type": "String"
+			},
+			{
+				"name": "Prop_84",
+				"type": "String"
+			},
+			{
+				"name": "1",
+				"type": "String"
+			},
+			{
+				"name": "Prop_86",
+				"type": "String"
+			},
+			{
+				"name": "287",
+				"type": "String"
+			},
+			{
+				"name": "Prop_88",
+				"type": "String"
+			},
+			{
+				"name": "Prop_89",
+				"type": "String"
+			},
+			{
+				"name": "Prop_90",
+				"type": "String"
+			},
+			{
+				"name": "Prop_91",
+				"type": "String"
+			},
+			{
+				"name": "Prop_92",
+				"type": "String"
+			},
+			{
+				"name": "093",
+				"type": "String"
+			},
+			{
+				"name": "Prop_94",
+				"type": "String"
+			},
+			{
+				"name": "Prop_95",
+				"type": "String"
+			},
+			{
+				"name": "Prop_96",
+				"type": "String"
+			},
+			{
+				"name": "Prop_97",
+				"type": "String"
+			},
+			{
+				"name": "098",
+				"type": "String"
+			},
+			{
+				"name": "Prop_99",
+				"type": "String"
+			},
+			{
+				"name": "Prop_100",
+				"type": "String"
+			},
+			{
+				"name": "Prop_101",
+				"type": "String"
+			},
+			{
+				"name": "0102",
+				"type": "String"
+			},
+			{
+				"name": "Prop_103",
+				"type": "String"
+			},
+			{
+				"name": "Prop_104",
+				"type": "String"
+			},
+			{
+				"name": "Prop_105",
+				"type": "String"
+			},
+			{
+				"name": "Prop_106",
+				"type": "String"
+			},
+			{
+				"name": "Prop_107",
+				"type": "String"
+			},
+			{
+				"name": "Prop_108",
+				"type": "String"
+			},
+			{
+				"name": "Prop_109",
+				"type": "String"
+			},
+			{
+				"name": "Prop_110",
+				"type": "String"
+			},
+			{
+				"name": "0111",
+				"type": "String"
+			},
+			{
+				"name": "Prop_112",
+				"type": "String"
+			},
+			{
+				"name": "0113",
+				"type": "String"
+			},
+			{
+				"name": "Prop_114",
+				"type": "String"
+			},
+			{
+				"name": "0115",
+				"type": "String"
+			},
+			{
+				"name": "0116",
+				"type": "String"
+			},
+			{
+				"name": "0117",
+				"type": "String"
+			},
+			{
+				"name": "0118",
+				"type": "String"
+			},
+			{
+				"name": "0119",
+				"type": "String"
+			},
+			{
+				"name": "0120",
+				"type": "String"
+			},
+			{
+				"name": "0121",
+				"type": "String"
+			},
+			{
+				"name": "Prop_122",
+				"type": "String"
+			},
+			{
+				"name": "Prop_123",
+				"type": "String"
+			},
+			{
+				"name": "Prop_124",
+				"type": "String"
+			},
+			{
+				"name": "Prop_125",
+				"type": "String"
+			},
+			{
+				"name": "Prop_126",
+				"type": "String"
+			},
+			{
+				"name": "0127",
+				"type": "String"
+			},
+			{
+				"name": "Prop_128",
+				"type": "String"
+			},
+			{
+				"name": "Prop_129",
+				"type": "String"
+			},
+			{
+				"name": "Prop_130",
+				"type": "String"
+			},
+			{
+				"name": "Prop_131",
+				"type": "String"
+			},
+			{
+				"name": "Prop_132",
+				"type": "String"
+			},
+			{
+				"name": "Prop_133",
+				"type": "String"
+			},
+			{
+				"name": "Prop_134",
+				"type": "String"
+			},
+			{
+				"name": "Prop_135",
+				"type": "String"
+			},
+			{
+				"name": "Prop_136",
+				"type": "String"
+			},
+			{
+				"name": "Prop_137",
+				"type": "String"
+			},
+			{
+				"name": "Prop_138",
+				"type": "String"
+			},
+			{
+				"name": "N/A",
+				"type": "String"
+			},
+			{
+				"name": "Prop_140",
+				"type": "String"
+			},
+			{
+				"name": "HDFCINBBCHE",
+				"type": "String"
+			},
+			{
+				"name": "Prop_142",
+				"type": "String"
+			},
+			{
+				"name": "Prop_143",
+				"type": "String"
+			},
+			{
+				"name": "Prop_144",
+				"type": "String"
+			},
+			{
+				"name": "0145",
+				"type": "String"
+			},
+			{
+				"name": "Prop_146",
+				"type": "String"
+			},
+			{
+				"name": "Prop_147",
+				"type": "String"
+			},
+			{
+				"name": "0148",
+				"type": "String"
+			},
+			{
+				"name": "True",
+				"type": "String"
+			},
+			{
+				"name": "Prop_150",
+				"type": "String"
+			},
+			{
+				"name": "a0v5i00000C7zuIAAR",
+				"type": "String"
+			},
+			{
+				"name": "0152",
+				"type": "String"
+			},
+			{
+				"name": "Prop_153",
+				"type": "String"
+			},
+			{
+				"name": "EHDL",
+				"type": "String"
+			},
+			{
+				"name": "Prop_155",
+				"type": "String"
+			},
+			{
+				"name": "Prop_156",
+				"type": "String"
+			},
+			{
+				"name": "Prop_157",
+				"type": "String"
+			},
+			{
+				"name": "Prop_158",
+				"type": "String"
+			},
+			{
+				"name": "321.00",
+				"type": "String"
+			},
+			{
+				"name": "A22",
+				"type": "String"
+			},
+			{
+				"name": "Prop_161",
+				"type": "String"
+			},
+			{
+				"name": "Prop_162",
+				"type": "String"
+			},
+			{
+				"name": "Prop_163",
+				"type": "String"
+			},
+			{
+				"name": "Prop_164",
+				"type": "String"
+			},
+			{
+				"name": "Prop_165",
+				"type": "String"
+			},
+			{
+				"name": "Prop_166",
+				"type": "String"
+			},
+			{
+				"name": "Prop_167",
+				"type": "String"
+			},
+			{
+				"name": "0168",
+				"type": "String"
+			},
+			{
+				"name": "3295436.00",
+				"type": "String"
+			},
+			{
+				"name": "0170",
+				"type": "String"
+			},
+			{
+				"name": "110000.00171",
+				"type": "String"
+			},
+			{
+				"name": "88.63",
+				"type": "String"
+			},
+			{
+				"name": "0173",
+				"type": "String"
+			},
+			{
+				"name": "0174",
+				"type": "String"
+			},
+			{
+				"name": "0175",
+				"type": "String"
+			},
+			{
+				"name": "0176",
+				"type": "String"
+			},
+			{
+				"name": "0177",
+				"type": "String"
+			},
+			{
+				"name": "TVS Emerald Green Acres-Test178",
+				"type": "String"
+			},
+			{
+				"name": "0179",
+				"type": "String"
+			},
+			{
+				"name": "0180",
+				"type": "String"
+			},
+			{
+				"name": "0181",
+				"type": "String"
+			},
+			{
+				"name": "0182",
+				"type": "String"
+			},
+			{
+				"name": "2000000.00",
+				"type": "String"
+			},
+			{
+				"name": "7500000.00",
+				"type": "String"
+			},
+			{
+				"name": "0185",
+				"type": "String"
+			},
+			{
+				"name": "164772",
+				"type": "String"
+			},
+			{
+				"name": "0187",
+				"type": "String"
+			},
+			{
+				"name": "0188",
+				"type": "String"
+			},
+			{
+				"name": "3460207.80189",
+				"type": "String"
+			},
+			{
+				"name": "0190",
+				"type": "String"
+			},
+			{
+				"name": "0191",
+				"type": "String"
+			},
+			{
+				"name": "0192",
+				"type": "String"
+			},
+			{
+				"name": "0193",
+				"type": "String"
+			},
+			{
+				"name": "0194",
+				"type": "String"
+			},
+			{
+				"name": "0195",
+				"type": "String"
+			},
+			{
+				"name": "0196",
+				"type": "String"
+			},
+			{
+				"name": "0197",
+				"type": "String"
+			},
+			{
+				"name": "0198",
+				"type": "String"
+			},
+			{
+				"name": "0199",
+				"type": "String"
+			},
+			{
+				"name": "0200",
+				"type": "String"
+			},
+			{
+				"name": "0201",
+				"type": "String"
+			},
+			{
+				"name": "0202",
+				"type": "String"
+			},
+			{
+				"name": "0203",
+				"type": "String"
+			},
+			{
+				"name": "0204",
+				"type": "String"
+			},
+			{
+				"name": "0205",
+				"type": "String"
+			},
+			{
+				"name": "0206",
+				"type": "String"
+			},
+			{
+				"name": "a0a5i000000Gm9sAAC",
+				"type": "String"
+			},
+			{
+				"name": "TVS Emerald Green Acres-Test208",
+				"type": "String"
+			},
+			{
+				"name": "0209",
+				"type": "String"
+			},
+			{
+				"name": "3460207.80210",
+				"type": "String"
+			},
+			{
+				"name": "Prop_211",
+				"type": "String"
+			},
+			{
+				"name": "Prop_212",
+				"type": "String"
+			},
+			{
+				"name": "Prop_213",
+				"type": "String"
+			},
+			{
+				"name": "Prop_214",
+				"type": "String"
+			},
+			{
+				"name": "Prop_215",
+				"type": "String"
+			},
+			{
+				"name": "Prop_216",
+				"type": "String"
+			},
+			{
+				"name": "Prop_217",
+				"type": "String"
+			},
+			{
+				"name": "Prop_218",
+				"type": "String"
+			},
+			{
+				"name": "Prop_219",
+				"type": "String"
+			},
+			{
+				"name": "Prop_220",
+				"type": "String"
+			},
+			{
+				"name": "Prop_221",
+				"type": "String"
+			},
+			{
+				"name": "Prop_222",
+				"type": "String"
+			},
+			{
+				"name": "Prop_223",
+				"type": "String"
+			},
+			{
+				"name": "0224",
+				"type": "String"
+			},
+			{
+				"name": "954.00225",
+				"type": "String"
+			},
+			{
+				"name": "0226",
+				"type": "String"
+			},
+			{
+				"name": "0227",
+				"type": "String"
+			},
+			{
+				"name": "3460207.80228",
+				"type": "String"
+			},
+			{
+				"name": "3460207.80229",
+				"type": "String"
+			},
+			{
+				"name": "0230",
+				"type": "String"
+			},
+			{
+				"name": "0231",
+				"type": "String"
+			},
+			{
+				"name": "Prop_232",
+				"type": "String"
+			},
+			{
+				"name": "593.00",
+				"type": "String"
+			},
+			{
+				"name": "65.00",
+				"type": "String"
+			},
+			{
+				"name": "296.00",
+				"type": "String"
+			},
+			{
+				"name": "B",
+				"type": "String"
+			},
+			{
+				"name": "2237",
+				"type": "String"
+			},
+			{
+				"name": "Prop_238",
+				"type": "String"
+			},
+			{
+				"name": "110000.00239",
+				"type": "String"
+			},
+			{
+				"name": "Prop_240",
+				"type": "String"
+			},
+			{
+				"name": "Prop_241",
+				"type": "String"
+			},
+			{
+				"name": "Prop_242",
+				"type": "String"
+			},
+			{
+				"name": "Prop_243",
+				"type": "String"
+			},
+			{
+				"name": "Prop_244",
+				"type": "String"
+			},
+			{
+				"name": "Prop_245",
+				"type": "String"
+			},
+			{
+				"name": "Prop_246",
+				"type": "String"
+			},
+			{
+				"name": "Prop_247",
+				"type": "String"
+			},
+			{
+				"name": "R. K. Salai, Mylapore248",
+				"type": "String"
+			},
+			{
+				"name": "143100.00",
+				"type": "String"
+			}
+		]
+	}
+}
