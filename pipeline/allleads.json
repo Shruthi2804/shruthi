@@ -24,7 +24,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SalesforceObject1",
+						"referenceName": "LeadData",
 						"type": "DatasetReference"
 					}
 				]
